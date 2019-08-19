@@ -86,7 +86,7 @@
 <meta property="og:site_name" content="高手的博客">
 <meta property="og:description" content="前几天看到一道挺有意思的面试题，问是不是所有对象和数组都在堆上分配内存空间。当时第一反应是否定的，脑子里隐约闪过一个“栈上分配”的词，却又想不起来那具体讲的是什么，">
 <meta property="og:locale" content="en">
-<meta property="og:updated_time" content="2019-08-16T02:25:54.186Z">
+<meta property="og:updated_time" content="2019-08-16T03:14:25.456Z">
 <meta name="twitter:card" content="summary">
 <meta name="twitter:title" content="对象一定在堆上吗？">
 <meta name="twitter:description" content="前几天看到一道挺有意思的面试题，问是不是所有对象和数组都在堆上分配内存空间。当时第一反应是否定的，脑子里隐约闪过一个“栈上分配”的词，却又想不起来那具体讲的是什么，">
@@ -308,13 +308,13 @@
 <p>讲到这里，我突然想到最近在公司做的项目里的一段代码，很能说明这个问题。</p>
 <figure class="highlight java"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br></pre></td><td class="code"><pre><span class="line"><span class="function"><span class="keyword">public</span> <span class="keyword">static</span> String <span class="title">dateFormat</span><span class="params">(Date date)</span></span>&#123;</span><br><span class="line">        SimpleDateFormat sdf = <span class="keyword">new</span> SimpleDateFormat(<span class="string">"yyyy-MM-dd HH:mm:ss"</span>);</span><br><span class="line">        <span class="keyword">return</span> sdf.format(date);</span><br><span class="line">&#125;</span><br></pre></td></tr></table></figure>
 
-<figure class="highlight java"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br></pre></td><td class="code"><pre><span class="line"><span class="function"><span class="keyword">public</span> <span class="keyword">static</span> String <span class="title">dateFormat</span><span class="params">(Date date)</span></span>&#123;</span><br><span class="line">        SimpleDateFormat sdf = <span class="keyword">new</span> SimpleDateFormat(<span class="string">"yyyy-MM-dd HH:mm:ss"</span>);</span><br><span class="line">        <span class="keyword">return</span> sdf.format(date);</span><br><span class="line">&#125;</span><br></pre></td></tr></table></figure>
-
 <p>这是某个工具类里的一个方法，作用是将时间格式化。其中用到SimpleDateFormat这个类，由于它是非线程安全的，只能在每次调用该方法的时候新创建一个对象使用，用完便丢弃。</p>
 <p>这是不是刚好符合“栈上分配”的特征呢？这样的对象放在堆中，在方法完成后也不会再使用，也不可能被其他线程引用到，放在堆中徒占空间，增加垃圾收集器的负担。</p>
 <p>在Hotspot编译器中就有这样的一个功能，它能够分析出一个新的对象的引用的使用范围，从而决定是否要将这个对象分配到堆上，被称为“逃逸分析”。在JDK7及之后的版本被默认开启，<a href="https://www.baidu.com" target="_blank" rel="noopener">想要了解逃逸分析请看我另一篇博客</a>。</p>
 <p>就上面这段代码里的SimpleDateFormat对象，经过编译器的“逃逸分析”之后，会被定义为NoEscape（没有逃逸），从而对其进行“栈上分配”，在虚拟机栈中分配内存。</p>
-<p>经过上述分析我们可以得出结论——并不是所有的对象和数组都在堆上分配内存空间，会有一些经编译器逃逸分析后被定义为NoEscape的对象，在虚拟机栈上分配内存。这些对象会随着对应栈帧的弹出而直接被清除，而不是等待垃圾收集器的回收。</p>
+<p>经过上述分析我们可以得出结论。</p>
+<p>并不是所有的对象和数组都在堆上分配内存空间，会有一些经编译器逃逸分析后被定义为NoEscape的对象，在虚拟机栈上分配内存。</p>
+<p>这些对象会随着对应栈帧的弹出而直接被清除，而不是等待垃圾收集器的回收。</p>
 
       
     </div>
@@ -339,7 +339,7 @@
         <div class="post-nav">
           <div class="post-nav-next post-nav-item">
             
-              <a href="/2019/08/15/hello/" rel="next" title="Markdown使用文档">
+              <a href="/2019/08/15/hi/" rel="next" title="Markdown使用文档">
                 <i class="fa fa-chevron-left"></i> Markdown使用文档
               </a>
             
@@ -348,6 +348,10 @@
           <span class="post-nav-divider"></span>
 
           <div class="post-nav-prev post-nav-item">
+            
+              <a href="/2019/08/16/谈谈双亲委派模型/" rel="prev" title="谈谈双亲委派模型">
+                谈谈双亲委派模型 <i class="fa fa-chevron-right"></i>
+              </a>
             
           </div>
         </div>
@@ -415,7 +419,7 @@
               
                 <a href="/archives/">
               
-                  <span class="site-state-item-count">2</span>
+                  <span class="site-state-item-count">5</span>
                   <span class="site-state-item-name">posts</span>
                 </a>
               </div>
