@@ -79,17 +79,17 @@
 
 
 
-<meta name="description" content="###Java内存模型在多线程的条件下，内存可见性一直都是让开发者脑壳疼的问题。好在从JDK5开始，Java使用的JSR-133内存模型中使用happens-before的概念来阐述操作之间的内存可见性。对程序员来说，happens-before规则简单易懂，有了它，程序员不用去学习复杂的重排序规则就可以理解JMM提供的内存可见性保证。 在引出happens-before规则之前，我们先来介绍一下">
+<meta name="description" content="在多线程的条件下，内存可见性一直都是让开发者脑壳疼的问题。好在从JDK5开始，Java使用的JSR-133内存模型中使用happens-before的概念来阐述操作之间的内存可见性。对程序员来说，happens-before规则简单易懂，有了它，程序员不用去学习复杂的重排序规则就可以理解JMM提供的内存可见性保证。">
 <meta property="og:type" content="article">
 <meta property="og:title" content="Java内存模型">
 <meta property="og:url" content="http://yoursite.com/2019/09/10/Java内存模型/index.html">
 <meta property="og:site_name" content="高手的博客">
-<meta property="og:description" content="###Java内存模型在多线程的条件下，内存可见性一直都是让开发者脑壳疼的问题。好在从JDK5开始，Java使用的JSR-133内存模型中使用happens-before的概念来阐述操作之间的内存可见性。对程序员来说，happens-before规则简单易懂，有了它，程序员不用去学习复杂的重排序规则就可以理解JMM提供的内存可见性保证。 在引出happens-before规则之前，我们先来介绍一下">
+<meta property="og:description" content="在多线程的条件下，内存可见性一直都是让开发者脑壳疼的问题。好在从JDK5开始，Java使用的JSR-133内存模型中使用happens-before的概念来阐述操作之间的内存可见性。对程序员来说，happens-before规则简单易懂，有了它，程序员不用去学习复杂的重排序规则就可以理解JMM提供的内存可见性保证。">
 <meta property="og:locale" content="en">
-<meta property="og:updated_time" content="2019-09-10T03:58:57.642Z">
+<meta property="og:updated_time" content="2019-09-10T04:17:36.024Z">
 <meta name="twitter:card" content="summary">
 <meta name="twitter:title" content="Java内存模型">
-<meta name="twitter:description" content="###Java内存模型在多线程的条件下，内存可见性一直都是让开发者脑壳疼的问题。好在从JDK5开始，Java使用的JSR-133内存模型中使用happens-before的概念来阐述操作之间的内存可见性。对程序员来说，happens-before规则简单易懂，有了它，程序员不用去学习复杂的重排序规则就可以理解JMM提供的内存可见性保证。 在引出happens-before规则之前，我们先来介绍一下">
+<meta name="twitter:description" content="在多线程的条件下，内存可见性一直都是让开发者脑壳疼的问题。好在从JDK5开始，Java使用的JSR-133内存模型中使用happens-before的概念来阐述操作之间的内存可见性。对程序员来说，happens-before规则简单易懂，有了它，程序员不用去学习复杂的重排序规则就可以理解JMM提供的内存可见性保证。">
 
 
 
@@ -299,7 +299,9 @@
       
 
       
-        <p>###Java内存模型<br>在多线程的条件下，内存可见性一直都是让开发者脑壳疼的问题。好在从JDK5开始，Java使用的JSR-133内存模型中使用happens-before的概念来阐述操作之间的内存可见性。对程序员来说，happens-before规则简单易懂，有了它，程序员不用去学习复杂的重排序规则就可以理解JMM提供的内存可见性保证。</p>
+        <p>在多线程的条件下，内存可见性一直都是让开发者脑壳疼的问题。好在从JDK5开始，Java使用的JSR-133内存模型中使用happens-before的概念来阐述操作之间的内存可见性。对程序员来说，happens-before规则简单易懂，有了它，程序员不用去学习复杂的重排序规则就可以理解JMM提供的内存可见性保证。</p>
+<a id="more"></a>
+
 <p>在引出happens-before规则之前，我们先来介绍一下Java的内存模型——JMM。</p>
 <p>Java内存区域&amp;Java内存模型傻傻分不清，在这里有必要区分一下。Java内存区域指的是堆、虚拟机栈、方法区这些概念，是JVM里真实存在的东西。相比之下，Java内存模型并不是真实存在的，它只是用来方便阐述某种概念的虚拟物件，即模型。JMM（Java内存模型）是一个面向开发者的概念。它定义了线程与主内存之间的抽象关系：线程之间的共享变量存储在主存，每个线程拥有自己的本地内存（实际上是一些寄存器），线程读写变量与本地内存交互，而不是直接操作主存。在这个概念背后实际上是在操作系统层面，为了使硬盘的存取速度与cpu更好的配合，在cpu中设置了缓存、寄存器等硬件所最终导致的内存结构。</p>
 
@@ -402,7 +404,7 @@
               
                 <a href="/archives/">
               
-                  <span class="site-state-item-count">9</span>
+                  <span class="site-state-item-count">8</span>
                   <span class="site-state-item-name">posts</span>
                 </a>
               </div>
