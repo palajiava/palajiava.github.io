@@ -79,20 +79,17 @@
 
 
 
-<meta name="description" content="前言：本文单纯记录两个网络协议的特点，类似笔记，没有自己的想法，比较枯燥。">
+<meta name="description" content="前几天看到一道挺有意思的面试题，问是不是所有对象和数组都在堆上分配内存空间。当时第一反应是否定的，脑子里隐约闪过一个“栈上分配”的词，却又想不起来那具体讲的是什么，">
 <meta property="og:type" content="article">
-<meta property="og:title" content="常见网络协议">
-<meta property="og:url" content="http://yoursite.com/2019/08/29/常见网络协议/index.html">
+<meta property="og:title" content="对象一定在堆上吗？">
+<meta property="og:url" content="http://yoursite.com/2019/08/15/对象一定在堆上吗/index.html">
 <meta property="og:site_name" content="高手的博客">
-<meta property="og:description" content="前言：本文单纯记录两个网络协议的特点，类似笔记，没有自己的想法，比较枯燥。">
+<meta property="og:description" content="前几天看到一道挺有意思的面试题，问是不是所有对象和数组都在堆上分配内存空间。当时第一反应是否定的，脑子里隐约闪过一个“栈上分配”的词，却又想不起来那具体讲的是什么，">
 <meta property="og:locale" content="en">
-<meta property="og:image" content="http://yoursite.com/.com//nimendedage/Desktop/Blog/pic/DNS%E5%9B%BE%E8%BF%AD%E4%BB%A3%E6%9F%A5%E6%89%BE.jpg">
-<meta property="og:image" content="http://yoursite.com/.com//nimendedage/Desktop/Blog/pic/DNS%E5%9B%BE%E9%80%92%E5%BD%92%E6%9F%A5%E6%89%BE.jpg">
-<meta property="og:updated_time" content="2019-09-10T08:31:24.905Z">
+<meta property="og:updated_time" content="2019-09-10T08:31:16.116Z">
 <meta name="twitter:card" content="summary">
-<meta name="twitter:title" content="常见网络协议">
-<meta name="twitter:description" content="前言：本文单纯记录两个网络协议的特点，类似笔记，没有自己的想法，比较枯燥。">
-<meta name="twitter:image" content="http://yoursite.com/.com//nimendedage/Desktop/Blog/pic/DNS%E5%9B%BE%E8%BF%AD%E4%BB%A3%E6%9F%A5%E6%89%BE.jpg">
+<meta name="twitter:title" content="对象一定在堆上吗？">
+<meta name="twitter:description" content="前几天看到一道挺有意思的面试题，问是不是所有对象和数组都在堆上分配内存空间。当时第一反应是否定的，脑子里隐约闪过一个“栈上分配”的词，却又想不起来那具体讲的是什么，">
 
 
 
@@ -122,13 +119,13 @@
 
 
 
-  <link rel="canonical" href="http://yoursite.com/2019/08/29/常见网络协议/">
+  <link rel="canonical" href="http://yoursite.com/2019/08/15/对象一定在堆上吗/">
 
 
 
 
 
-  <title>常见网络协议 | 高手的博客</title>
+  <title>对象一定在堆上吗？ | 高手的博客</title>
   
 
 
@@ -235,7 +232,7 @@
   
   
   <div class="post-block">
-    <link itemprop="mainEntityOfPage" href="http://yoursite.com/2019/08/29/常见网络协议/">
+    <link itemprop="mainEntityOfPage" href="http://yoursite.com/2019/08/15/对象一定在堆上吗/">
 
     <span hidden itemprop="author" itemscope itemtype="http://schema.org/Person">
       <meta itemprop="name" content="bingjie.du@xiaobao100.com">
@@ -252,7 +249,7 @@
 
         
         
-          <h1 class="post-title" itemprop="name headline">常见网络协议</h1>
+          <h1 class="post-title" itemprop="name headline">对象一定在堆上吗？</h1>
         
 
         <div class="post-meta">
@@ -264,8 +261,8 @@
               
                 <span class="post-meta-item-text">Posted on</span>
               
-              <time title="Post created" itemprop="dateCreated datePublished" datetime="2019-08-29T10:18:50+08:00">
-                2019-08-29
+              <time title="Post created" itemprop="dateCreated datePublished" datetime="2019-08-15T19:03:02+08:00">
+                2019-08-15
               </time>
             
 
@@ -303,27 +300,22 @@
 
       
         <hr>
-<p>前言：本文单纯记录两个网络协议的特点，类似笔记，没有自己的想法，比较枯燥。</p>
+<p>前几天看到一道挺有意思的面试题，问是不是所有对象和数组都在堆上分配内存空间。当时第一反应是否定的，脑子里隐约闪过一个“栈上分配”的词，却又想不起来那具体讲的是什么，</p>
 <a id="more"></a>
+<p>后来跟度娘查了些相关资料，正好赶上开始写博客的这天，决定把它记录下来。</p>
+<p>“栈上分配”（On-stack allocation）这个词出现在周志明的《深入理解JVM》中，里面在运行时数据区域这一章对Java的堆有严谨的描述——大多数的对象都生存在堆上，只有少数是“栈上分配”。文章中对这个词的描述只是一笔带过，当时处于自闭的我便没有追究这句话，没想到竟直接左右了我回答这道题的正确与否。</p>
+<p>就字面意思来讲，“栈上分配”很容易理解为在栈上分配空间，它原本的意思就是如此。学Java的小伙伴都知道，虚拟机栈主要是为Java方法分配内存空间，每个方法的step into和step out都对应着一个栈帧在虚拟机栈中入栈和出栈的过程。也就是说，如果对象真的在“栈上分配”了，就会随着该栈对应的方法的执行完成而被清除。而且，虚拟机栈是线程私有的，也意味着这个在“栈上分配”的对象只能对该线程可见。</p>
+<p>问题来了，什么样的对象适合“栈上分配”呢？</p>
+<p>讲到这里，我突然想到最近在公司做的项目里的一段代码，很能说明这个问题。</p>
+<figure class="highlight java"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br></pre></td><td class="code"><pre><span class="line"><span class="function"><span class="keyword">public</span> <span class="keyword">static</span> String <span class="title">dateFormat</span><span class="params">(Date date)</span></span>&#123;</span><br><span class="line">        SimpleDateFormat sdf = <span class="keyword">new</span> SimpleDateFormat(<span class="string">"yyyy-MM-dd HH:mm:ss"</span>);</span><br><span class="line">        <span class="keyword">return</span> sdf.format(date);</span><br><span class="line">&#125;</span><br></pre></td></tr></table></figure>
 
-<p>###DNS协议</p>
-<p>简介：</p>
-<p>翻译过来就是域名系统协议，提供根据域名返回ip地址的服务。<br>它其实就是一个使得主机能够查询分布式数据库的应用层协议。</p>
-<p>底层协议：</p>
-<p>DNS可以使用UDP/TCP进行传输，使用的端口号都为53，大多数情况下都是用UDP进行传输，只有当返回的响应过大或是DNS服务器去同步更新数据时才会使用TCP进行传输。</p>
-<p>功能步骤：</p>
-<p>在浏览器中访问域名时，系统默认先访问host文件查看是否存在访问域名的映射关系，若不存在，就将请求发送给本地DNS服务器，在本地服务器也找不到映射关系的情况下，会继续向上级服务器发送请求，此时有两种不同的查询方式——递归查询和迭代查询。</p>
-<p>解析顺序大致分为这几个步骤：（迭代）<br>1.浏览器缓存<br>2.系统缓存<br>3.路由器缓存<br>4.本地DNS服务器缓存<br>5.根域名服务器<br>6.顶级域名服务器<br>7.主域名服务器<br>8.本地DNS服务器缓存<br>（主域名服务器查找自身缓存，没有就去下一级域名服务器查找，直到找到）<br><img src="/.com//nimendedage/Desktop/Blog/pic/DNS%E5%9B%BE%E8%BF%AD%E4%BB%A3%E6%9F%A5%E6%89%BE.jpg" alt="DNS迭代查询"></p>
-<p>DNS本地服务器迭代查询</p>
-<p><img src="/.com//nimendedage/Desktop/Blog/pic/DNS%E5%9B%BE%E9%80%92%E5%BD%92%E6%9F%A5%E6%89%BE.jpg" alt="DNS递归查询"></p>
-<p>DNS本地服务器递归查询</p>
-<p>###ARP协议</p>
-<p>简介：</p>
-<p>1.ARP即地址解析协议，用于实现从IP地址到MAC地址的映射，即询问目标IP对应的MAC地址。</p>
-<p>2.在网络通信中，主机和主机通信的数据包需要依据OSI模型从上到下进行数据封装，当数据封装完整后，再向外发出。所以在局域网的通信中，不仅需要源目IP地址的封装，也需要源目MAC的封装。</p>
-<p>3.一般情况下，上层应用程序更多关心IP地址而不关心MAC地址，所以需要通过ARP协议来获知目的主机的MAC地址，完成数据封装。</p>
-<p>功能步骤：</p>
-<p>在发送分自顶向下封装数据时，在链路层会需要IP对应的MAC地址，这就需要ARP协议根据IP获取对应的MAC地址。ARP协议将请求包（内包含源主机的IP地址与MAC地址）采用广播的方式发送，交换机或无线路由器收到广播包时，会将此数据发给同一局域网的其他所有主机。目的主机收到后，会以单播的方式将响应发送给源主机，这就实现了IP到MAC地址的解析。</p>
+<p>这是某个工具类里的一个方法，作用是将时间格式化。其中用到SimpleDateFormat这个类，由于它是非线程安全的，只能在每次调用该方法的时候新创建一个对象使用，用完便丢弃。</p>
+<p>这是不是刚好符合“栈上分配”的特征呢？这样的对象放在堆中，在方法完成后也不会再使用，也不可能被其他线程引用到，放在堆中徒占空间，增加垃圾收集器的负担。</p>
+<p>在Hotspot编译器中就有这样的一个功能，它能够分析出一个新的对象的引用的使用范围，从而决定是否要将这个对象分配到堆上，被称为“逃逸分析”。在JDK7及之后的版本被默认开启，<a href="https://www.baidu.com" target="_blank" rel="noopener">想要了解逃逸分析请看我另一篇博客</a>。</p>
+<p>就上面这段代码里的SimpleDateFormat对象，经过编译器的“逃逸分析”之后，会被定义为NoEscape（没有逃逸），从而对其进行“栈上分配”，在虚拟机栈中分配内存。</p>
+<p>经过上述分析我们可以得出结论。</p>
+<p>并不是所有的对象和数组都在堆上分配内存空间，会有一些经编译器逃逸分析后被定义为NoEscape的对象，在虚拟机栈上分配内存。</p>
+<p>这些对象会随着对应栈帧的弹出而直接被清除，而不是等待垃圾收集器的回收。</p>
 
       
     </div>
@@ -348,8 +340,8 @@
         <div class="post-nav">
           <div class="post-nav-next post-nav-item">
             
-              <a href="/2019/08/28/单例模式/" rel="next" title="单例模式">
-                <i class="fa fa-chevron-left"></i> 单例模式
+              <a href="/2019/08/15/md使用说明/" rel="next" title="Markdown使用文档">
+                <i class="fa fa-chevron-left"></i> Markdown使用文档
               </a>
             
           </div>
@@ -358,8 +350,8 @@
 
           <div class="post-nav-prev post-nav-item">
             
-              <a href="/2019/09/02/深入理解happens-before规则/" rel="prev" title="happens-before规则与灵活的JVM">
-                happens-before规则与灵活的JVM <i class="fa fa-chevron-right"></i>
+              <a href="/2019/08/19/何为RESTful/" rel="prev" title="何为RESTful">
+                何为RESTful <i class="fa fa-chevron-right"></i>
               </a>
             
           </div>
