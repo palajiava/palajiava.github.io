@@ -86,7 +86,7 @@
 <meta property="og:site_name" content="高手的博客">
 <meta property="og:description" content="基于高速缓存的存储交互很好地解决了处理器与内存的速度矛盾，但却引入了新的问题——内存可见性。线程对变量的读写直接跟本地内存交互，不刷新到主存，也就意味着，这个操作仅对本线程可见，其他线程是看不见的。为了解决这个问题，JMM通过控制主内存与每个线程本地内存之间的交互，来为Java程序员提供内存可见性保证。happens-before规则就是用来阐述操作之间的内存可见性。">
 <meta property="og:locale" content="en">
-<meta property="og:updated_time" content="2019-09-10T04:28:16.957Z">
+<meta property="og:updated_time" content="2019-09-10T08:29:00.313Z">
 <meta name="twitter:card" content="summary">
 <meta name="twitter:title" content="happens-before规则与灵活的JVM">
 <meta name="twitter:description" content="基于高速缓存的存储交互很好地解决了处理器与内存的速度矛盾，但却引入了新的问题——内存可见性。线程对变量的读写直接跟本地内存交互，不刷新到主存，也就意味着，这个操作仅对本线程可见，其他线程是看不见的。为了解决这个问题，JMM通过控制主内存与每个线程本地内存之间的交互，来为Java程序员提供内存可见性保证。happens-before规则就是用来阐述操作之间的内存可见性。">
@@ -299,7 +299,8 @@
       
 
       
-        <p>基于高速缓存的存储交互很好地解决了处理器与内存的速度矛盾，但却引入了新的问题——内存可见性。线程对变量的读写直接跟本地内存交互，不刷新到主存，也就意味着，这个操作仅对本线程可见，其他线程是看不见的。为了解决这个问题，JMM通过控制主内存与每个线程本地内存之间的交互，来为Java程序员提供内存可见性保证。happens-before规则就是用来阐述操作之间的内存可见性。</p>
+        <hr>
+<p>基于高速缓存的存储交互很好地解决了处理器与内存的速度矛盾，但却引入了新的问题——内存可见性。线程对变量的读写直接跟本地内存交互，不刷新到主存，也就意味着，这个操作仅对本线程可见，其他线程是看不见的。为了解决这个问题，JMM通过控制主内存与每个线程本地内存之间的交互，来为Java程序员提供内存可见性保证。happens-before规则就是用来阐述操作之间的内存可见性。</p>
 <a id="more"></a>
 
 <p>有关happens-before规则的内容就不一一罗列了。需要注意的是，<strong>若两个操作之间具有happens-before关系，并不意味着前一个操作必须要在后一个操作之前执行，它只要求前一个操作对后一个操作可见</strong>。</p>
