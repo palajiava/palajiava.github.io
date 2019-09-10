@@ -79,13 +79,17 @@
 
 
 
-<meta property="og:type" content="website">
-<meta property="og:title" content="高手的博客">
-<meta property="og:url" content="http://yoursite.com/index.html">
+<meta name="description" content="SIS系统API文档示例——RPC版 简介SIS系统API主要面向哪些人群，使用者可以通过这些API获取到哪些信息，达到什么目的等。 环境JDK8 需要通过管理员获取以下参数用来初始化类    参数 说明    apiUrl 统一资源定位符   accesskeyId 通行密钥   publicKey 公钥匙   导入SDKPOM引入依赖包12345678910111213141516171819">
+<meta property="og:type" content="article">
+<meta property="og:title" content="SIS系统API文档——RPC">
+<meta property="og:url" content="http://yoursite.com/2019/08/20/SIS系统API文档——RPC/index.html">
 <meta property="og:site_name" content="高手的博客">
+<meta property="og:description" content="SIS系统API文档示例——RPC版 简介SIS系统API主要面向哪些人群，使用者可以通过这些API获取到哪些信息，达到什么目的等。 环境JDK8 需要通过管理员获取以下参数用来初始化类    参数 说明    apiUrl 统一资源定位符   accesskeyId 通行密钥   publicKey 公钥匙   导入SDKPOM引入依赖包12345678910111213141516171819">
 <meta property="og:locale" content="en">
+<meta property="og:updated_time" content="2019-08-20T10:49:07.973Z">
 <meta name="twitter:card" content="summary">
-<meta name="twitter:title" content="高手的博客">
+<meta name="twitter:title" content="SIS系统API文档——RPC">
+<meta name="twitter:description" content="SIS系统API文档示例——RPC版 简介SIS系统API主要面向哪些人群，使用者可以通过这些API获取到哪些信息，达到什么目的等。 环境JDK8 需要通过管理员获取以下参数用来初始化类    参数 说明    apiUrl 统一资源定位符   accesskeyId 通行密钥   publicKey 公钥匙   导入SDKPOM引入依赖包12345678910111213141516171819">
 
 
 
@@ -115,13 +119,13 @@
 
 
 
-  <link rel="canonical" href="http://yoursite.com/">
+  <link rel="canonical" href="http://yoursite.com/2019/08/20/SIS系统API文档——RPC/">
 
 
 
 
 
-  <title>高手的博客</title>
+  <title>SIS系统API文档——RPC | 高手的博客</title>
   
 
 
@@ -140,8 +144,7 @@
     
   
 
-  <div class="container sidebar-position-left 
-  page-home">
+  <div class="container sidebar-position-left page-post-detail">
     <div class="headband"></div>
 
     <header id="header" class="header" itemscope itemtype="http://schema.org/WPHeader">
@@ -214,636 +217,9 @@
         <div class="content-wrap">
           <div id="content" class="content">
             
-  <section id="posts" class="posts-expand">
+
+  <div id="posts" class="posts-expand">
     
-      
-
-  
-
-  
-  
-  
-
-  <article class="post post-type-normal" itemscope itemtype="http://schema.org/Article">
-  
-  
-  
-  <div class="post-block">
-    <link itemprop="mainEntityOfPage" href="http://yoursite.com/2019/09/10/Java内存模型/">
-
-    <span hidden itemprop="author" itemscope itemtype="http://schema.org/Person">
-      <meta itemprop="name" content="bingjie.du@xiaobao100.com">
-      <meta itemprop="description" content>
-      <meta itemprop="image" content="/images/avatar.gif">
-    </span>
-
-    <span hidden itemprop="publisher" itemscope itemtype="http://schema.org/Organization">
-      <meta itemprop="name" content="高手的博客">
-    </span>
-
-    
-      <header class="post-header">
-
-        
-        
-          <h1 class="post-title" itemprop="name headline">
-                
-                <a class="post-title-link" href="/2019/09/10/Java内存模型/" itemprop="url">Java内存模型</a></h1>
-        
-
-        <div class="post-meta">
-          <span class="post-time">
-            
-              <span class="post-meta-item-icon">
-                <i class="fa fa-calendar-o"></i>
-              </span>
-              
-                <span class="post-meta-item-text">Posted on</span>
-              
-              <time title="Post created" itemprop="dateCreated datePublished" datetime="2019-09-10T11:55:37+08:00">
-                2019-09-10
-              </time>
-            
-
-            
-
-            
-          </span>
-
-          
-
-          
-            
-          
-
-          
-          
-
-          
-
-          
-
-          
-
-        </div>
-      </header>
-    
-
-    
-    
-    
-    <div class="post-body" itemprop="articleBody">
-
-      
-      
-
-      
-        
-          
-            <p>###Java内存模型<br>在多线程的条件下，内存可见性一直都是让开发者脑壳疼的问题。好在从JDK5开始，Java使用的JSR-133内存模型中使用happens-before的概念来阐述操作之间的内存可见性。对程序员来说，happens-before规则简单易懂，有了它，程序员不用去学习复杂的重排序规则就可以理解JMM提供的内存可见性保证。</p>
-<p>在引出happens-before规则之前，我们先来介绍一下Java的内存模型——JMM。</p>
-<p>Java内存区域&amp;Java内存模型傻傻分不清，在这里有必要区分一下。Java内存区域指的是堆、虚拟机栈、方法区这些概念，是JVM里真实存在的东西。相比之下，Java内存模型并不是真实存在的，它只是用来方便阐述某种概念的虚拟物件，即模型。JMM（Java内存模型）是一个面向开发者的概念。它定义了线程与主内存之间的抽象关系：线程之间的共享变量存储在主存，每个线程拥有自己的本地内存（实际上是一些寄存器），线程读写变量与本地内存交互，而不是直接操作主存。在这个概念背后实际上是在操作系统层面，为了使硬盘的存取速度与cpu更好的配合，在cpu中设置了缓存、寄存器等硬件所最终导致的内存结构。</p>
-
-          
-        
-      
-    </div>
-    
-    
-    
-
-    
-
-    
-
-    
-
-    <footer class="post-footer">
-      
-
-      
-
-      
-
-      
-      
-        <div class="post-eof"></div>
-      
-    </footer>
-  </div>
-  
-  
-  
-  </article>
-
-
-    
-      
-
-  
-
-  
-  
-  
-
-  <article class="post post-type-normal" itemscope itemtype="http://schema.org/Article">
-  
-  
-  
-  <div class="post-block">
-    <link itemprop="mainEntityOfPage" href="http://yoursite.com/2019/09/02/深入理解happens-before规则/">
-
-    <span hidden itemprop="author" itemscope itemtype="http://schema.org/Person">
-      <meta itemprop="name" content="bingjie.du@xiaobao100.com">
-      <meta itemprop="description" content>
-      <meta itemprop="image" content="/images/avatar.gif">
-    </span>
-
-    <span hidden itemprop="publisher" itemscope itemtype="http://schema.org/Organization">
-      <meta itemprop="name" content="高手的博客">
-    </span>
-
-    
-      <header class="post-header">
-
-        
-        
-          <h1 class="post-title" itemprop="name headline">
-                
-                <a class="post-title-link" href="/2019/09/02/深入理解happens-before规则/" itemprop="url">happens-before规则与灵活的JVM</a></h1>
-        
-
-        <div class="post-meta">
-          <span class="post-time">
-            
-              <span class="post-meta-item-icon">
-                <i class="fa fa-calendar-o"></i>
-              </span>
-              
-                <span class="post-meta-item-text">Posted on</span>
-              
-              <time title="Post created" itemprop="dateCreated datePublished" datetime="2019-09-02T17:01:38+08:00">
-                2019-09-02
-              </time>
-            
-
-            
-
-            
-          </span>
-
-          
-
-          
-            
-          
-
-          
-          
-
-          
-
-          
-
-          
-
-        </div>
-      </header>
-    
-
-    
-    
-    
-    <div class="post-body" itemprop="articleBody">
-
-      
-      
-
-      
-        
-          <p>基于高速缓存的存储交互很好地解决了处理器与内存的速度矛盾，但却引入了新的问题——内存可见性。线程对变量的读写直接跟本地内存交互，不刷新到主存，也就意味着，这个操作仅对本线程可见，其他线程是看不见的。为了解决这个问题，JMM通过控制主内存与每个线程本地内存之间的交互，来为Java程序员提供内存可见性保证。happens-before规则就是用来阐述操作之间的内存可见性。</p>
-          <!--noindex-->
-          <div class="post-button text-center">
-            <a class="btn" href="/2019/09/02/深入理解happens-before规则/#more" rel="contents">
-              Read more &raquo;
-            </a>
-          </div>
-          <!--/noindex-->
-        
-      
-    </div>
-    
-    
-    
-
-    
-
-    
-
-    
-
-    <footer class="post-footer">
-      
-
-      
-
-      
-
-      
-      
-        <div class="post-eof"></div>
-      
-    </footer>
-  </div>
-  
-  
-  
-  </article>
-
-
-    
-      
-
-  
-
-  
-  
-  
-
-  <article class="post post-type-normal" itemscope itemtype="http://schema.org/Article">
-  
-  
-  
-  <div class="post-block">
-    <link itemprop="mainEntityOfPage" href="http://yoursite.com/2019/08/29/常见网络协议/">
-
-    <span hidden itemprop="author" itemscope itemtype="http://schema.org/Person">
-      <meta itemprop="name" content="bingjie.du@xiaobao100.com">
-      <meta itemprop="description" content>
-      <meta itemprop="image" content="/images/avatar.gif">
-    </span>
-
-    <span hidden itemprop="publisher" itemscope itemtype="http://schema.org/Organization">
-      <meta itemprop="name" content="高手的博客">
-    </span>
-
-    
-      <header class="post-header">
-
-        
-        
-          <h1 class="post-title" itemprop="name headline">
-                
-                <a class="post-title-link" href="/2019/08/29/常见网络协议/" itemprop="url">常见网络协议</a></h1>
-        
-
-        <div class="post-meta">
-          <span class="post-time">
-            
-              <span class="post-meta-item-icon">
-                <i class="fa fa-calendar-o"></i>
-              </span>
-              
-                <span class="post-meta-item-text">Posted on</span>
-              
-              <time title="Post created" itemprop="dateCreated datePublished" datetime="2019-08-29T10:18:50+08:00">
-                2019-08-29
-              </time>
-            
-
-            
-
-            
-          </span>
-
-          
-
-          
-            
-          
-
-          
-          
-
-          
-
-          
-
-          
-
-        </div>
-      </header>
-    
-
-    
-    
-    
-    <div class="post-body" itemprop="articleBody">
-
-      
-      
-
-      
-        
-          
-            <p>前言：本文单纯记录两个网络协议的特点，类似笔记，没有自己的想法，比较枯燥。</p>
-<p>###DNS协议</p>
-<p>简介：</p>
-<p>翻译过来就是域名系统协议，提供根据域名返回ip地址的服务。<br>它其实就是一个使得主机能够查询分布式数据库的应用层协议。</p>
-<p>底层协议：</p>
-<p>DNS可以使用UDP/TCP进行传输，使用的端口号都为53，大多数情况下都是用UDP进行传输，只有当返回的响应过大或是DNS服务器去同步更新数据时才会使用TCP进行传输。</p>
-<p>功能步骤：</p>
-<p>在浏览器中访问域名时，系统默认先访问host文件查看是否存在访问域名的映射关系，若不存在，就将请求发送给本地DNS服务器，在本地服务器也找不到映射关系的情况下，会继续向上级服务器发送请求，此时有两种不同的查询方式——递归查询和迭代查询。</p>
-<p>解析顺序大致分为这几个步骤：（迭代）<br>1.浏览器缓存<br>2.系统缓存<br>3.路由器缓存<br>4.本地DNS服务器缓存<br>5.根域名服务器<br>6.顶级域名服务器<br>7.主域名服务器<br>8.本地DNS服务器缓存<br>（主域名服务器查找自身缓存，没有就去下一级域名服务器查找，直到找到）<br><img src="/Users/nimendedage/Desktop/Blog/pic/DNS%E5%9B%BE%E8%BF%AD%E4%BB%A3%E6%9F%A5%E6%89%BE.jpg" alt="DNS迭代查询"></p>
-<p>DNS本地服务器迭代查询</p>
-<p><img src="/Users/nimendedage/Desktop/Blog/pic/DNS%E5%9B%BE%E9%80%92%E5%BD%92%E6%9F%A5%E6%89%BE.jpg" alt="DNS递归查询"></p>
-<p>DNS本地服务器递归查询</p>
-<p>###ARP协议</p>
-<p>简介：</p>
-<p>1.ARP即地址解析协议，用于实现从IP地址到MAC地址的映射，即询问目标IP对应的MAC地址。</p>
-<p>2.在网络通信中，主机和主机通信的数据包需要依据OSI模型从上到下进行数据封装，当数据封装完整后，再向外发出。所以在局域网的通信中，不仅需要源目IP地址的封装，也需要源目MAC的封装。</p>
-<p>3.一般情况下，上层应用程序更多关心IP地址而不关心MAC地址，所以需要通过ARP协议来获知目的主机的MAC地址，完成数据封装。</p>
-<p>功能步骤：</p>
-<p>在发送分自顶向下封装数据时，在链路层会需要IP对应的MAC地址，这就需要ARP协议根据IP获取对应的MAC地址。ARP协议将请求包（内包含源主机的IP地址与MAC地址）采用广播的方式发送，交换机或无线路由器收到广播包时，会将此数据发给同一局域网的其他所有主机。目的主机收到后，会以单播的方式将响应发送给源主机，这就实现了IP到MAC地址的解析。</p>
-
-          
-        
-      
-    </div>
-    
-    
-    
-
-    
-
-    
-
-    
-
-    <footer class="post-footer">
-      
-
-      
-
-      
-
-      
-      
-        <div class="post-eof"></div>
-      
-    </footer>
-  </div>
-  
-  
-  
-  </article>
-
-
-    
-      
-
-  
-
-  
-  
-  
-
-  <article class="post post-type-normal" itemscope itemtype="http://schema.org/Article">
-  
-  
-  
-  <div class="post-block">
-    <link itemprop="mainEntityOfPage" href="http://yoursite.com/2019/08/28/单例模式/">
-
-    <span hidden itemprop="author" itemscope itemtype="http://schema.org/Person">
-      <meta itemprop="name" content="bingjie.du@xiaobao100.com">
-      <meta itemprop="description" content>
-      <meta itemprop="image" content="/images/avatar.gif">
-    </span>
-
-    <span hidden itemprop="publisher" itemscope itemtype="http://schema.org/Organization">
-      <meta itemprop="name" content="高手的博客">
-    </span>
-
-    
-      <header class="post-header">
-
-        
-        
-          <h1 class="post-title" itemprop="name headline">
-                
-                <a class="post-title-link" href="/2019/08/28/单例模式/" itemprop="url">单例模式</a></h1>
-        
-
-        <div class="post-meta">
-          <span class="post-time">
-            
-              <span class="post-meta-item-icon">
-                <i class="fa fa-calendar-o"></i>
-              </span>
-              
-                <span class="post-meta-item-text">Posted on</span>
-              
-              <time title="Post created" itemprop="dateCreated datePublished" datetime="2019-08-28T16:16:01+08:00">
-                2019-08-28
-              </time>
-            
-
-            
-
-            
-          </span>
-
-          
-
-          
-            
-          
-
-          
-          
-
-          
-
-          
-
-          
-
-        </div>
-      </header>
-    
-
-    
-    
-    
-    <div class="post-body" itemprop="articleBody">
-
-      
-      
-
-      
-        
-          
-            
-          
-        
-      
-    </div>
-    
-    
-    
-
-    
-
-    
-
-    
-
-    <footer class="post-footer">
-      
-
-      
-
-      
-
-      
-      
-        <div class="post-eof"></div>
-      
-    </footer>
-  </div>
-  
-  
-  
-  </article>
-
-
-    
-      
-
-  
-
-  
-  
-  
-
-  <article class="post post-type-normal" itemscope itemtype="http://schema.org/Article">
-  
-  
-  
-  <div class="post-block">
-    <link itemprop="mainEntityOfPage" href="http://yoursite.com/2019/08/21/关于sql的优化/">
-
-    <span hidden itemprop="author" itemscope itemtype="http://schema.org/Person">
-      <meta itemprop="name" content="bingjie.du@xiaobao100.com">
-      <meta itemprop="description" content>
-      <meta itemprop="image" content="/images/avatar.gif">
-    </span>
-
-    <span hidden itemprop="publisher" itemscope itemtype="http://schema.org/Organization">
-      <meta itemprop="name" content="高手的博客">
-    </span>
-
-    
-      <header class="post-header">
-
-        
-        
-          <h1 class="post-title" itemprop="name headline">
-                
-                <a class="post-title-link" href="/2019/08/21/关于sql的优化/" itemprop="url">关于sql的优化</a></h1>
-        
-
-        <div class="post-meta">
-          <span class="post-time">
-            
-              <span class="post-meta-item-icon">
-                <i class="fa fa-calendar-o"></i>
-              </span>
-              
-                <span class="post-meta-item-text">Posted on</span>
-              
-              <time title="Post created" itemprop="dateCreated datePublished" datetime="2019-08-21T23:27:50+08:00">
-                2019-08-21
-              </time>
-            
-
-            
-
-            
-          </span>
-
-          
-
-          
-            
-          
-
-          
-          
-
-          
-
-          
-
-          
-
-        </div>
-      </header>
-    
-
-    
-    
-    
-    <div class="post-body" itemprop="articleBody">
-
-      
-      
-
-      
-        
-          <p>之前买过一本叫《高性能MySQL》的书，迫于时间没来得及看。最近要对业务部的代码进行优化，其中就有sql优化这一块。看着一条条兵荒马乱的sql语句，我内心惊不起一丝波澜，当事人现在是相当的后悔。</p>
-          <!--noindex-->
-          <div class="post-button text-center">
-            <a class="btn" href="/2019/08/21/关于sql的优化/#more" rel="contents">
-              Read more &raquo;
-            </a>
-          </div>
-          <!--/noindex-->
-        
-      
-    </div>
-    
-    
-    
-
-    
-
-    
-
-    
-
-    <footer class="post-footer">
-      
-
-      
-
-      
-
-      
-      
-        <div class="post-eof"></div>
-      
-    </footer>
-  </div>
-  
-  
-  
-  </article>
-
-
-    
-      
 
   
 
@@ -873,9 +249,7 @@
 
         
         
-          <h1 class="post-title" itemprop="name headline">
-                
-                <a class="post-title-link" href="/2019/08/20/SIS系统API文档——RPC/" itemprop="url">SIS系统API文档——RPC</a></h1>
+          <h1 class="post-title" itemprop="name headline">SIS系统API文档——RPC</h1>
         
 
         <div class="post-meta">
@@ -925,9 +299,7 @@
       
 
       
-        
-          
-            <h1 id="SIS系统API文档示例——RPC版"><a href="#SIS系统API文档示例——RPC版" class="headerlink" title="SIS系统API文档示例——RPC版"></a>SIS系统API文档示例——RPC版</h1><hr>
+        <h1 id="SIS系统API文档示例——RPC版"><a href="#SIS系统API文档示例——RPC版" class="headerlink" title="SIS系统API文档示例——RPC版"></a>SIS系统API文档示例——RPC版</h1><hr>
 <h2 id="简介"><a href="#简介" class="headerlink" title="简介"></a>简介</h2><p>SIS系统API主要面向哪些人群，使用者可以通过这些API获取到哪些信息，达到什么目的等。</p>
 <h2 id="环境"><a href="#环境" class="headerlink" title="环境"></a>环境</h2><p>JDK8</p>
 <p>需要通过管理员获取以下参数用来初始化类</p>
@@ -1397,8 +769,6 @@
 <p>答：@¥<em>&amp;#¥</em>&amp;¥#</p>
 <p>··· ··· </p>
 
-          
-        
       
     </div>
     
@@ -1415,136 +785,32 @@
       
 
       
-
-      
-
       
       
-        <div class="post-eof"></div>
+
       
-    </footer>
-  </div>
-  
-  
-  
-  </article>
-
-
-    
-      
-
-  
-
-  
-  
-  
-
-  <article class="post post-type-normal" itemscope itemtype="http://schema.org/Article">
-  
-  
-  
-  <div class="post-block">
-    <link itemprop="mainEntityOfPage" href="http://yoursite.com/2019/08/19/何为RESTful/">
-
-    <span hidden itemprop="author" itemscope itemtype="http://schema.org/Person">
-      <meta itemprop="name" content="bingjie.du@xiaobao100.com">
-      <meta itemprop="description" content>
-      <meta itemprop="image" content="/images/avatar.gif">
-    </span>
-
-    <span hidden itemprop="publisher" itemscope itemtype="http://schema.org/Organization">
-      <meta itemprop="name" content="高手的博客">
-    </span>
-
-    
-      <header class="post-header">
-
-        
-        
-          <h1 class="post-title" itemprop="name headline">
-                
-                <a class="post-title-link" href="/2019/08/19/何为RESTful/" itemprop="url">何为RESTful</a></h1>
-        
-
-        <div class="post-meta">
-          <span class="post-time">
+        <div class="post-nav">
+          <div class="post-nav-next post-nav-item">
             
-              <span class="post-meta-item-icon">
-                <i class="fa fa-calendar-o"></i>
-              </span>
-              
-                <span class="post-meta-item-text">Posted on</span>
-              
-              <time title="Post created" itemprop="dateCreated datePublished" datetime="2019-08-19T17:58:04+08:00">
-                2019-08-19
-              </time>
+              <a href="/2019/08/19/何为RESTful/" rel="next" title="何为RESTful">
+                <i class="fa fa-chevron-left"></i> 何为RESTful
+              </a>
             
+          </div>
 
+          <span class="post-nav-divider"></span>
+
+          <div class="post-nav-prev post-nav-item">
             
-
+              <a href="/2019/08/21/关于sql的优化/" rel="prev" title="关于sql的优化">
+                关于sql的优化 <i class="fa fa-chevron-right"></i>
+              </a>
             
-          </span>
-
-          
-
-          
-            
-          
-
-          
-          
-
-          
-
-          
-
-          
-
+          </div>
         </div>
-      </header>
-    
-
-    
-    
-    
-    <div class="post-body" itemprop="articleBody">
-
-      
       
 
       
-        
-          <p>记得那是在朋友的简历上，项目经验这一块，他用RESTful风格描述他的项目架构。当时我一脸疑惑，便去搜索了这个词的意思，看了半天也没有看懂。</p>
-          <!--noindex-->
-          <div class="post-button text-center">
-            <a class="btn" href="/2019/08/19/何为RESTful/#more" rel="contents">
-              Read more &raquo;
-            </a>
-          </div>
-          <!--/noindex-->
-        
-      
-    </div>
-    
-    
-    
-
-    
-
-    
-
-    
-
-    <footer class="post-footer">
-      
-
-      
-
-      
-
-      
-      
-        <div class="post-eof"></div>
       
     </footer>
   </div>
@@ -1554,259 +820,11 @@
   </article>
 
 
-    
-      
 
-  
-
-  
-  
-  
-
-  <article class="post post-type-normal" itemscope itemtype="http://schema.org/Article">
-  
-  
-  
-  <div class="post-block">
-    <link itemprop="mainEntityOfPage" href="http://yoursite.com/2019/08/15/开始/">
-
-    <span hidden itemprop="author" itemscope itemtype="http://schema.org/Person">
-      <meta itemprop="name" content="bingjie.du@xiaobao100.com">
-      <meta itemprop="description" content>
-      <meta itemprop="image" content="/images/avatar.gif">
-    </span>
-
-    <span hidden itemprop="publisher" itemscope itemtype="http://schema.org/Organization">
-      <meta itemprop="name" content="高手的博客">
-    </span>
-
-    
-      <header class="post-header">
-
-        
-        
-          <h1 class="post-title" itemprop="name headline">
-                
-                <a class="post-title-link" href="/2019/08/15/开始/" itemprop="url">对象一定在堆上吗？</a></h1>
-        
-
-        <div class="post-meta">
-          <span class="post-time">
-            
-              <span class="post-meta-item-icon">
-                <i class="fa fa-calendar-o"></i>
-              </span>
-              
-                <span class="post-meta-item-text">Posted on</span>
-              
-              <time title="Post created" itemprop="dateCreated datePublished" datetime="2019-08-15T19:03:02+08:00">
-                2019-08-15
-              </time>
-            
-
-            
-
-            
-          </span>
-
-          
-
-          
-            
-          
-
-          
-          
-
-          
-
-          
-
-          
-
-        </div>
-      </header>
-    
-
-    
-    
-    
-    <div class="post-body" itemprop="articleBody">
-
-      
-      
-
-      
-        
-          <p>前几天看到一道挺有意思的面试题，问是不是所有对象和数组都在堆上分配内存空间。当时第一反应是否定的，脑子里隐约闪过一个“栈上分配”的词，却又想不起来那具体讲的是什么，</p>
-          <!--noindex-->
-          <div class="post-button text-center">
-            <a class="btn" href="/2019/08/15/开始/#more" rel="contents">
-              Read more &raquo;
-            </a>
-          </div>
-          <!--/noindex-->
-        
+    <div class="post-spread">
       
     </div>
-    
-    
-    
-
-    
-
-    
-
-    
-
-    <footer class="post-footer">
-      
-
-      
-
-      
-
-      
-      
-        <div class="post-eof"></div>
-      
-    </footer>
   </div>
-  
-  
-  
-  </article>
-
-
-    
-      
-
-  
-
-  
-  
-  
-
-  <article class="post post-type-normal" itemscope itemtype="http://schema.org/Article">
-  
-  
-  
-  <div class="post-block">
-    <link itemprop="mainEntityOfPage" href="http://yoursite.com/2019/08/15/hi/">
-
-    <span hidden itemprop="author" itemscope itemtype="http://schema.org/Person">
-      <meta itemprop="name" content="bingjie.du@xiaobao100.com">
-      <meta itemprop="description" content>
-      <meta itemprop="image" content="/images/avatar.gif">
-    </span>
-
-    <span hidden itemprop="publisher" itemscope itemtype="http://schema.org/Organization">
-      <meta itemprop="name" content="高手的博客">
-    </span>
-
-    
-      <header class="post-header">
-
-        
-        
-          <h1 class="post-title" itemprop="name headline">
-                
-                <a class="post-title-link" href="/2019/08/15/hi/" itemprop="url">Markdown使用文档</a></h1>
-        
-
-        <div class="post-meta">
-          <span class="post-time">
-            
-              <span class="post-meta-item-icon">
-                <i class="fa fa-calendar-o"></i>
-              </span>
-              
-                <span class="post-meta-item-text">Posted on</span>
-              
-              <time title="Post created" itemprop="dateCreated datePublished" datetime="2019-08-15T18:57:20+08:00">
-                2019-08-15
-              </time>
-            
-
-            
-
-            
-          </span>
-
-          
-
-          
-            
-          
-
-          
-          
-
-          
-
-          
-
-          
-
-        </div>
-      </header>
-    
-
-    
-    
-    
-    <div class="post-body" itemprop="articleBody">
-
-      
-      
-
-      
-        
-          <h1 id="欢迎使用-Cmd-Markdown-编辑阅读器"><a href="#欢迎使用-Cmd-Markdown-编辑阅读器" class="headerlink" title="欢迎使用 Cmd Markdown 编辑阅读器"></a>欢迎使用 Cmd Markdown 编辑阅读器</h1><hr>
-<p>我们理解您需要更便捷更高效的工具记录思想，整理笔记、知识，并将其中承载的价值传播给他人，<strong>Cmd Markdown</strong> 是我们给出的答案 —— 我们为记录思想和分享知识提供更专业的工具。 您可以使用 Cmd Markdown：</p>
-          <!--noindex-->
-          <div class="post-button text-center">
-            <a class="btn" href="/2019/08/15/hi/#more" rel="contents">
-              Read more &raquo;
-            </a>
-          </div>
-          <!--/noindex-->
-        
-      
-    </div>
-    
-    
-    
-
-    
-
-    
-
-    
-
-    <footer class="post-footer">
-      
-
-      
-
-      
-
-      
-      
-        <div class="post-eof"></div>
-      
-    </footer>
-  </div>
-  
-  
-  
-  </article>
-
-
-    
-  </section>
-
-  
 
 
           </div>
@@ -1814,6 +832,10 @@
 
 
           
+
+  
+
+
 
         </div>
         
@@ -1834,8 +856,17 @@
       
 
       
+        <ul class="sidebar-nav motion-element">
+          <li class="sidebar-nav-toc sidebar-nav-active" data-target="post-toc-wrap">
+            Table of Contents
+          </li>
+          <li class="sidebar-nav-overview" data-target="site-overview-wrap">
+            Overview
+          </li>
+        </ul>
+      
 
-      <section class="site-overview-wrap sidebar-panel sidebar-panel-active">
+      <section class="site-overview-wrap sidebar-panel">
         <div class="site-overview">
           <div class="site-author motion-element" itemprop="author" itemscope itemtype="http://schema.org/Person">
             
@@ -1877,6 +908,22 @@
         </div>
       </section>
 
+      
+      <!--noindex-->
+        <section class="post-toc-wrap motion-element sidebar-panel sidebar-panel-active">
+          <div class="post-toc">
+
+            
+              
+            
+
+            
+              <div class="post-toc-content"><ol class="nav"><li class="nav-item nav-level-1"><a class="nav-link" href="#SIS系统API文档示例——RPC版"><span class="nav-number">1.</span> <span class="nav-text">SIS系统API文档示例——RPC版</span></a><ol class="nav-child"><li class="nav-item nav-level-2"><a class="nav-link" href="#简介"><span class="nav-number">1.1.</span> <span class="nav-text">简介</span></a></li><li class="nav-item nav-level-2"><a class="nav-link" href="#环境"><span class="nav-number">1.2.</span> <span class="nav-text">环境</span></a></li><li class="nav-item nav-level-2"><a class="nav-link" href="#导入SDK"><span class="nav-number">1.3.</span> <span class="nav-text">导入SDK</span></a><ol class="nav-child"><li class="nav-item nav-level-3"><a class="nav-link" href="#POM引入依赖包"><span class="nav-number">1.3.1.</span> <span class="nav-text">POM引入依赖包</span></a></li><li class="nav-item nav-level-3"><a class="nav-link" href="#导入jar包"><span class="nav-number">1.3.2.</span> <span class="nav-text">导入jar包</span></a></li></ol></li><li class="nav-item nav-level-2"><a class="nav-link" href="#使用示例"><span class="nav-number">1.4.</span> <span class="nav-text">使用示例</span></a><ol class="nav-child"><li class="nav-item nav-level-3"><a class="nav-link" href="#获取行政班列表"><span class="nav-number">1.4.1.</span> <span class="nav-text">获取行政班列表</span></a><ol class="nav-child"><li class="nav-item nav-level-4"><a class="nav-link" href="#接口名称："><span class="nav-number">1.4.1.1.</span> <span class="nav-text">接口名称：</span></a></li><li class="nav-item nav-level-4"><a class="nav-link" href="#入参："><span class="nav-number">1.4.1.2.</span> <span class="nav-text">入参：</span></a></li><li class="nav-item nav-level-4"><a class="nav-link" href="#请求示例："><span class="nav-number">1.4.1.3.</span> <span class="nav-text">请求示例：</span></a></li><li class="nav-item nav-level-4"><a class="nav-link" href="#返回参数说明："><span class="nav-number">1.4.1.4.</span> <span class="nav-text">返回参数说明：</span></a></li><li class="nav-item nav-level-4"><a class="nav-link" href="#返回json参数示例："><span class="nav-number">1.4.1.5.</span> <span class="nav-text">返回json参数示例：</span></a></li></ol></li><li class="nav-item nav-level-3"><a class="nav-link" href="#获取选修班列表"><span class="nav-number">1.4.2.</span> <span class="nav-text">获取选修班列表</span></a><ol class="nav-child"><li class="nav-item nav-level-4"><a class="nav-link" href="#接口名称：-1"><span class="nav-number">1.4.2.1.</span> <span class="nav-text">接口名称：</span></a></li><li class="nav-item nav-level-4"><a class="nav-link" href="#入参：-1"><span class="nav-number">1.4.2.2.</span> <span class="nav-text">入参：</span></a></li><li class="nav-item nav-level-4"><a class="nav-link" href="#请求示例：-1"><span class="nav-number">1.4.2.3.</span> <span class="nav-text">请求示例：</span></a></li><li class="nav-item nav-level-4"><a class="nav-link" href="#返回参数说明：-1"><span class="nav-number">1.4.2.4.</span> <span class="nav-text">返回参数说明：</span></a></li><li class="nav-item nav-level-4"><a class="nav-link" href="#返回json参数示例：-1"><span class="nav-number">1.4.2.5.</span> <span class="nav-text">返回json参数示例：</span></a></li></ol></li></ol></li><li class="nav-item nav-level-2"><a class="nav-link" href="#错误码"><span class="nav-number">1.5.</span> <span class="nav-text">错误码</span></a></li><li class="nav-item nav-level-2"><a class="nav-link" href="#常见问题"><span class="nav-number">1.6.</span> <span class="nav-text">常见问题</span></a></li></ol></li></ol></div>
+            
+
+          </div>
+        </section>
+      <!--/noindex-->
       
 
       
@@ -2010,6 +1057,10 @@
   
 
   
+  <script type="text/javascript" src="/js/src/scrollspy.js?v=5.1.4"></script>
+<script type="text/javascript" src="/js/src/post-details.js?v=5.1.4"></script>
+
+
 
   
 

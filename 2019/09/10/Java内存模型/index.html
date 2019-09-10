@@ -79,13 +79,17 @@
 
 
 
-<meta property="og:type" content="website">
-<meta property="og:title" content="高手的博客">
-<meta property="og:url" content="http://yoursite.com/archives/2019/index.html">
+<meta name="description" content="###Java内存模型在多线程的条件下，内存可见性一直都是让开发者脑壳疼的问题。好在从JDK5开始，Java使用的JSR-133内存模型中使用happens-before的概念来阐述操作之间的内存可见性。对程序员来说，happens-before规则简单易懂，有了它，程序员不用去学习复杂的重排序规则就可以理解JMM提供的内存可见性保证。 在引出happens-before规则之前，我们先来介绍一下">
+<meta property="og:type" content="article">
+<meta property="og:title" content="Java内存模型">
+<meta property="og:url" content="http://yoursite.com/2019/09/10/Java内存模型/index.html">
 <meta property="og:site_name" content="高手的博客">
+<meta property="og:description" content="###Java内存模型在多线程的条件下，内存可见性一直都是让开发者脑壳疼的问题。好在从JDK5开始，Java使用的JSR-133内存模型中使用happens-before的概念来阐述操作之间的内存可见性。对程序员来说，happens-before规则简单易懂，有了它，程序员不用去学习复杂的重排序规则就可以理解JMM提供的内存可见性保证。 在引出happens-before规则之前，我们先来介绍一下">
 <meta property="og:locale" content="en">
+<meta property="og:updated_time" content="2019-09-10T03:58:57.642Z">
 <meta name="twitter:card" content="summary">
-<meta name="twitter:title" content="高手的博客">
+<meta name="twitter:title" content="Java内存模型">
+<meta name="twitter:description" content="###Java内存模型在多线程的条件下，内存可见性一直都是让开发者脑壳疼的问题。好在从JDK5开始，Java使用的JSR-133内存模型中使用happens-before的概念来阐述操作之间的内存可见性。对程序员来说，happens-before规则简单易懂，有了它，程序员不用去学习复杂的重排序规则就可以理解JMM提供的内存可见性保证。 在引出happens-before规则之前，我们先来介绍一下">
 
 
 
@@ -115,13 +119,13 @@
 
 
 
-  <link rel="canonical" href="http://yoursite.com/archives/2019/">
+  <link rel="canonical" href="http://yoursite.com/2019/09/10/Java内存模型/">
 
 
 
 
 
-  <title>Archive | 高手的博客</title>
+  <title>Java内存模型 | 高手的博客</title>
   
 
 
@@ -140,7 +144,7 @@
     
   
 
-  <div class="container sidebar-position-left page-archive">
+  <div class="container sidebar-position-left page-post-detail">
     <div class="headband"></div>
 
     <header id="header" class="header" itemscope itemtype="http://schema.org/WPHeader">
@@ -214,352 +218,143 @@
           <div id="content" class="content">
             
 
-  
-  
-  
-  <div class="post-block archive">
-    <div id="posts" class="posts-collapse">
-      <span class="archive-move-on"></span>
+  <div id="posts" class="posts-expand">
+    
 
-      <span class="archive-page-counter">
+  
+
+  
+  
+  
+
+  <article class="post post-type-normal" itemscope itemtype="http://schema.org/Article">
+  
+  
+  
+  <div class="post-block">
+    <link itemprop="mainEntityOfPage" href="http://yoursite.com/2019/09/10/Java内存模型/">
+
+    <span hidden itemprop="author" itemscope itemtype="http://schema.org/Person">
+      <meta itemprop="name" content="bingjie.du@xiaobao100.com">
+      <meta itemprop="description" content>
+      <meta itemprop="image" content="/images/avatar.gif">
+    </span>
+
+    <span hidden itemprop="publisher" itemscope itemtype="http://schema.org/Organization">
+      <meta itemprop="name" content="高手的博客">
+    </span>
+
+    
+      <header class="post-header">
+
         
         
+          <h1 class="post-title" itemprop="name headline">Java内存模型</h1>
         
+
+        <div class="post-meta">
+          <span class="post-time">
+            
+              <span class="post-meta-item-icon">
+                <i class="fa fa-calendar-o"></i>
+              </span>
+              
+                <span class="post-meta-item-text">Posted on</span>
+              
+              <time title="Post created" itemprop="dateCreated datePublished" datetime="2019-09-10T11:55:37+08:00">
+                2019-09-10
+              </time>
+            
+
+            
+
+            
+          </span>
+
           
-        
-        Um..! 9 posts in total. Keep on posting.
-      </span>
 
-      
-
-        
-        
-        
-
-        
           
-          <div class="collection-title">
-            <h1 class="archive-year" id="archive-year-2019">2019</h1>
-          </div>
-        
-        
+            
+          
 
-        
+          
+          
 
-  <article class="post post-type-normal" itemscope itemtype="http://schema.org/Article">
-    <header class="post-header">
+          
 
-      <h2 class="post-title">
-        
-            <a class="post-title-link" href="/2019/09/10/Java内存模型/" itemprop="url">
-              
-                <span itemprop="name">Java内存模型</span>
-              
-            </a>
-        
-      </h2>
+          
 
-      <div class="post-meta">
-        <time class="post-time" itemprop="dateCreated" datetime="2019-09-10T11:55:37+08:00" content="2019-09-10">
-          09-10
-        </time>
-      </div>
+          
 
-    </header>
-  </article>
+        </div>
+      </header>
+    
 
-
+    
+    
+    
+    <div class="post-body" itemprop="articleBody">
 
       
-
-        
-        
-        
-
-        
-        
-
-        
-
-  <article class="post post-type-normal" itemscope itemtype="http://schema.org/Article">
-    <header class="post-header">
-
-      <h2 class="post-title">
-        
-            <a class="post-title-link" href="/2019/09/02/深入理解happens-before规则/" itemprop="url">
-              
-                <span itemprop="name">happens-before规则与灵活的JVM</span>
-              
-            </a>
-        
-      </h2>
-
-      <div class="post-meta">
-        <time class="post-time" itemprop="dateCreated" datetime="2019-09-02T17:01:38+08:00" content="2019-09-02">
-          09-02
-        </time>
-      </div>
-
-    </header>
-  </article>
-
-
-
       
 
-        
-        
-        
-
-        
-        
-
-        
-
-  <article class="post post-type-normal" itemscope itemtype="http://schema.org/Article">
-    <header class="post-header">
-
-      <h2 class="post-title">
-        
-            <a class="post-title-link" href="/2019/08/29/常见网络协议/" itemprop="url">
-              
-                <span itemprop="name">常见网络协议</span>
-              
-            </a>
-        
-      </h2>
-
-      <div class="post-meta">
-        <time class="post-time" itemprop="dateCreated" datetime="2019-08-29T10:18:50+08:00" content="2019-08-29">
-          08-29
-        </time>
-      </div>
-
-    </header>
-  </article>
-
-
+      
+        <p>###Java内存模型<br>在多线程的条件下，内存可见性一直都是让开发者脑壳疼的问题。好在从JDK5开始，Java使用的JSR-133内存模型中使用happens-before的概念来阐述操作之间的内存可见性。对程序员来说，happens-before规则简单易懂，有了它，程序员不用去学习复杂的重排序规则就可以理解JMM提供的内存可见性保证。</p>
+<p>在引出happens-before规则之前，我们先来介绍一下Java的内存模型——JMM。</p>
+<p>Java内存区域&amp;Java内存模型傻傻分不清，在这里有必要区分一下。Java内存区域指的是堆、虚拟机栈、方法区这些概念，是JVM里真实存在的东西。相比之下，Java内存模型并不是真实存在的，它只是用来方便阐述某种概念的虚拟物件，即模型。JMM（Java内存模型）是一个面向开发者的概念。它定义了线程与主内存之间的抽象关系：线程之间的共享变量存储在主存，每个线程拥有自己的本地内存（实际上是一些寄存器），线程读写变量与本地内存交互，而不是直接操作主存。在这个概念背后实际上是在操作系统层面，为了使硬盘的存取速度与cpu更好的配合，在cpu中设置了缓存、寄存器等硬件所最终导致的内存结构。</p>
 
       
-
-        
-        
-        
-
-        
-        
-
-        
-
-  <article class="post post-type-normal" itemscope itemtype="http://schema.org/Article">
-    <header class="post-header">
-
-      <h2 class="post-title">
-        
-            <a class="post-title-link" href="/2019/08/28/单例模式/" itemprop="url">
-              
-                <span itemprop="name">单例模式</span>
-              
-            </a>
-        
-      </h2>
-
-      <div class="post-meta">
-        <time class="post-time" itemprop="dateCreated" datetime="2019-08-28T16:16:01+08:00" content="2019-08-28">
-          08-28
-        </time>
-      </div>
-
-    </header>
-  </article>
-
-
-
-      
-
-        
-        
-        
-
-        
-        
-
-        
-
-  <article class="post post-type-normal" itemscope itemtype="http://schema.org/Article">
-    <header class="post-header">
-
-      <h2 class="post-title">
-        
-            <a class="post-title-link" href="/2019/08/21/关于sql的优化/" itemprop="url">
-              
-                <span itemprop="name">关于sql的优化</span>
-              
-            </a>
-        
-      </h2>
-
-      <div class="post-meta">
-        <time class="post-time" itemprop="dateCreated" datetime="2019-08-21T23:27:50+08:00" content="2019-08-21">
-          08-21
-        </time>
-      </div>
-
-    </header>
-  </article>
-
-
-
-      
-
-        
-        
-        
-
-        
-        
-
-        
-
-  <article class="post post-type-normal" itemscope itemtype="http://schema.org/Article">
-    <header class="post-header">
-
-      <h2 class="post-title">
-        
-            <a class="post-title-link" href="/2019/08/20/SIS系统API文档——RPC/" itemprop="url">
-              
-                <span itemprop="name">SIS系统API文档——RPC</span>
-              
-            </a>
-        
-      </h2>
-
-      <div class="post-meta">
-        <time class="post-time" itemprop="dateCreated" datetime="2019-08-20T16:53:33+08:00" content="2019-08-20">
-          08-20
-        </time>
-      </div>
-
-    </header>
-  </article>
-
-
-
-      
-
-        
-        
-        
-
-        
-        
-
-        
-
-  <article class="post post-type-normal" itemscope itemtype="http://schema.org/Article">
-    <header class="post-header">
-
-      <h2 class="post-title">
-        
-            <a class="post-title-link" href="/2019/08/19/何为RESTful/" itemprop="url">
-              
-                <span itemprop="name">何为RESTful</span>
-              
-            </a>
-        
-      </h2>
-
-      <div class="post-meta">
-        <time class="post-time" itemprop="dateCreated" datetime="2019-08-19T17:58:04+08:00" content="2019-08-19">
-          08-19
-        </time>
-      </div>
-
-    </header>
-  </article>
-
-
-
-      
-
-        
-        
-        
-
-        
-        
-
-        
-
-  <article class="post post-type-normal" itemscope itemtype="http://schema.org/Article">
-    <header class="post-header">
-
-      <h2 class="post-title">
-        
-            <a class="post-title-link" href="/2019/08/15/开始/" itemprop="url">
-              
-                <span itemprop="name">对象一定在堆上吗？</span>
-              
-            </a>
-        
-      </h2>
-
-      <div class="post-meta">
-        <time class="post-time" itemprop="dateCreated" datetime="2019-08-15T19:03:02+08:00" content="2019-08-15">
-          08-15
-        </time>
-      </div>
-
-    </header>
-  </article>
-
-
-
-      
-
-        
-        
-        
-
-        
-        
-
-        
-
-  <article class="post post-type-normal" itemscope itemtype="http://schema.org/Article">
-    <header class="post-header">
-
-      <h2 class="post-title">
-        
-            <a class="post-title-link" href="/2019/08/15/hi/" itemprop="url">
-              
-                <span itemprop="name">Markdown使用文档</span>
-              
-            </a>
-        
-      </h2>
-
-      <div class="post-meta">
-        <time class="post-time" itemprop="dateCreated" datetime="2019-08-15T18:57:20+08:00" content="2019-08-15">
-          08-15
-        </time>
-      </div>
-
-    </header>
-  </article>
-
-
-
-      
-
     </div>
+    
+    
+    
+
+    
+
+    
+
+    
+
+    <footer class="post-footer">
+      
+
+      
+      
+      
+
+      
+        <div class="post-nav">
+          <div class="post-nav-next post-nav-item">
+            
+              <a href="/2019/09/02/深入理解happens-before规则/" rel="next" title="happens-before规则与灵活的JVM">
+                <i class="fa fa-chevron-left"></i> happens-before规则与灵活的JVM
+              </a>
+            
+          </div>
+
+          <span class="post-nav-divider"></span>
+
+          <div class="post-nav-prev post-nav-item">
+            
+          </div>
+        </div>
+      
+
+      
+      
+    </footer>
   </div>
   
   
   
+  </article>
 
-  
 
+
+    <div class="post-spread">
+      
+    </div>
+  </div>
 
 
           </div>
@@ -567,6 +362,10 @@
 
 
           
+
+  
+
+
 
         </div>
         
@@ -763,6 +562,10 @@
   
 
   
+  <script type="text/javascript" src="/js/src/scrollspy.js?v=5.1.4"></script>
+<script type="text/javascript" src="/js/src/post-details.js?v=5.1.4"></script>
+
+
 
   
 

@@ -79,17 +79,17 @@
 
 
 
-<meta name="description" content="说实话，每次提到双亲委派模型的时候就来气。 我不懂为什么总有人吹双亲委派模型的好处。 在我的理解里，好坏一定是相对的。比如Springboot,它基于约定大于配置的原则，减少了许多编写配置文件的工作量。相对于曾经的SSM，它使得项目的开发变得更轻量级，">
+<meta name="description" content="基于高速缓存的存储交互很好地解决了处理器与内存的速度矛盾，但却引入了新的问题——内存可见性。线程对变量的读写直接跟本地内存交互，不刷新到主存，也就意味着，这个操作仅对本线程可见，其他线程是看不见的。为了解决这个问题，JMM通过控制主内存与每个线程本地内存之间的交互，来为Java程序员提供内存可见性保证。happens-before规则就是用来阐述操作之间的内存可见性。">
 <meta property="og:type" content="article">
-<meta property="og:title" content="谈谈双亲委派模型">
-<meta property="og:url" content="http://yoursite.com/2019/08/16/谈谈双亲委派模型/index.html">
+<meta property="og:title" content="happens-before规则与灵活的JVM">
+<meta property="og:url" content="http://yoursite.com/2019/09/02/深入理解happens-before规则/index.html">
 <meta property="og:site_name" content="高手的博客">
-<meta property="og:description" content="说实话，每次提到双亲委派模型的时候就来气。 我不懂为什么总有人吹双亲委派模型的好处。 在我的理解里，好坏一定是相对的。比如Springboot,它基于约定大于配置的原则，减少了许多编写配置文件的工作量。相对于曾经的SSM，它使得项目的开发变得更轻量级，">
+<meta property="og:description" content="基于高速缓存的存储交互很好地解决了处理器与内存的速度矛盾，但却引入了新的问题——内存可见性。线程对变量的读写直接跟本地内存交互，不刷新到主存，也就意味着，这个操作仅对本线程可见，其他线程是看不见的。为了解决这个问题，JMM通过控制主内存与每个线程本地内存之间的交互，来为Java程序员提供内存可见性保证。happens-before规则就是用来阐述操作之间的内存可见性。">
 <meta property="og:locale" content="en">
-<meta property="og:updated_time" content="2019-08-16T04:01:34.030Z">
+<meta property="og:updated_time" content="2019-09-10T04:06:19.977Z">
 <meta name="twitter:card" content="summary">
-<meta name="twitter:title" content="谈谈双亲委派模型">
-<meta name="twitter:description" content="说实话，每次提到双亲委派模型的时候就来气。 我不懂为什么总有人吹双亲委派模型的好处。 在我的理解里，好坏一定是相对的。比如Springboot,它基于约定大于配置的原则，减少了许多编写配置文件的工作量。相对于曾经的SSM，它使得项目的开发变得更轻量级，">
+<meta name="twitter:title" content="happens-before规则与灵活的JVM">
+<meta name="twitter:description" content="基于高速缓存的存储交互很好地解决了处理器与内存的速度矛盾，但却引入了新的问题——内存可见性。线程对变量的读写直接跟本地内存交互，不刷新到主存，也就意味着，这个操作仅对本线程可见，其他线程是看不见的。为了解决这个问题，JMM通过控制主内存与每个线程本地内存之间的交互，来为Java程序员提供内存可见性保证。happens-before规则就是用来阐述操作之间的内存可见性。">
 
 
 
@@ -119,13 +119,13 @@
 
 
 
-  <link rel="canonical" href="http://yoursite.com/2019/08/16/谈谈双亲委派模型/">
+  <link rel="canonical" href="http://yoursite.com/2019/09/02/深入理解happens-before规则/">
 
 
 
 
 
-  <title>谈谈双亲委派模型 | 高手的博客</title>
+  <title>happens-before规则与灵活的JVM | 高手的博客</title>
   
 
 
@@ -232,7 +232,7 @@
   
   
   <div class="post-block">
-    <link itemprop="mainEntityOfPage" href="http://yoursite.com/2019/08/16/谈谈双亲委派模型/">
+    <link itemprop="mainEntityOfPage" href="http://yoursite.com/2019/09/02/深入理解happens-before规则/">
 
     <span hidden itemprop="author" itemscope itemtype="http://schema.org/Person">
       <meta itemprop="name" content="bingjie.du@xiaobao100.com">
@@ -249,7 +249,7 @@
 
         
         
-          <h1 class="post-title" itemprop="name headline">谈谈双亲委派模型</h1>
+          <h1 class="post-title" itemprop="name headline">happens-before规则与灵活的JVM</h1>
         
 
         <div class="post-meta">
@@ -261,8 +261,8 @@
               
                 <span class="post-meta-item-text">Posted on</span>
               
-              <time title="Post created" itemprop="dateCreated datePublished" datetime="2019-08-16T11:54:15+08:00">
-                2019-08-16
+              <time title="Post created" itemprop="dateCreated datePublished" datetime="2019-09-02T17:01:38+08:00">
+                2019-09-02
               </time>
             
 
@@ -299,9 +299,28 @@
       
 
       
-        <p>说实话，每次提到双亲委派模型的时候就来气。</p>
-<p>我不懂为什么总有人吹双亲委派模型的好处。</p>
-<p>在我的理解里，好坏一定是相对的。比如Springboot,它基于约定大于配置的原则，减少了许多编写配置文件的工作量。相对于曾经的SSM，它使得项目的开发变得更轻量级，</p>
+        <p>基于高速缓存的存储交互很好地解决了处理器与内存的速度矛盾，但却引入了新的问题——内存可见性。线程对变量的读写直接跟本地内存交互，不刷新到主存，也就意味着，这个操作仅对本线程可见，其他线程是看不见的。为了解决这个问题，JMM通过控制主内存与每个线程本地内存之间的交互，来为Java程序员提供内存可见性保证。happens-before规则就是用来阐述操作之间的内存可见性。</p>
+<a id="more"></a>
+
+<p>有关happens-before规则的内容就不一一罗列了。需要注意的是，若两个操作之间具有happens-before关系，并不意味着前一个操作必须要在后一个操作之前执行，它只要求前一个操作对后一个操作可见。</p>
+<p>对于这个概念，我理解了好一段时间。或许是一个偶然的灵感，我茅塞顿开，竟也觉得这个规则有几分“微妙”。</p>
+<p>我们的代码中其实存在大量的happens-before关系，然而JVM并不全禁止了它们的指令重排序，可以说大部分的happens-before关系是被允许指令重排序的，我们则是要侧重知道哪些是不被允许指令重排序的。</p>
+<p>happens-before要求前一个操作对后一个操作可见。关于这个“可见”我认为可以从两个方面来谈，过程与结果。</p>
+<p>从结果出发可能会比较好理解一点。从机器的角度，在多线程的情况下，操作A对操作B可见，若改变这两个操作的指令顺序影响到了最终的结果，则这样的指令重排序是被禁止的。这其实就是多线程的as-if-serial。</p>
+<p>对我个人而言，我更喜欢在过程中去理解这个“可见”。不了解过程就不知道这个指令重排序是否会对结果产生影响。举个例子：</p>
+<figure class="highlight java"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br></pre></td><td class="code"><pre><span class="line">a = <span class="number">1</span>; <span class="comment">//操作A</span></span><br><span class="line">b = <span class="number">2</span>; <span class="comment">//操作B</span></span><br></pre></td></tr></table></figure>
+
+<p>上述代码中对a,b两个变量的赋值操作是完全不相干的。在单线程as-if-serial的语义下，a = 1 happens-before b = 2 ，但这两个操作完全没有交集，虚拟机就不会禁止它们的指令重排序。</p>
+<p>操作B “即使操作A对我可见，但是我们又不相见”<br>操作A “此时我就可以光明正大排到他后面去”</p>
+<p>我们加个条件，假设这个b变量为volatile变量。</p>
+<figure class="highlight java"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br></pre></td><td class="code"><pre><span class="line">a = <span class="number">1</span>; <span class="comment">//操作A</span></span><br><span class="line">b = <span class="number">2</span>; <span class="comment">//操作B，b为volatile变量</span></span><br></pre></td></tr></table></figure>
+
+<p>emmmm…从这个角度看这两个操作好像还是没有任何关联，虚拟机会禁止它们的指令重排序吗？答案是会的。</p>
+<p>对于volatile变量，虚拟机在对它进行写操作时，会将这个线程对应的本地内存中的共享变量的值刷新到主内存。划重点，不是单独将这个变量刷新到主内存，而是连带整个本地内存中的共享变量一起（虽然我对这个粒度大小抱有疑惑）。也就是说，在进行b = 2这个操作时，需要将a的值也刷新到主内存，此时这两个操作就产生了关联，在某些情况下会影响到结果。</p>
+<p>操作B “是时候考验你是否对我可见了”<br>操作A “？？”</p>
+<p>从过程角度分析，在某些特殊语义的条件下，表面上看似毫无关联的两个操作也会存在潜在的关联，会对结果产生影响。在这样的情况下，若两个操作之间存在happens-before关系，虚拟机就会出手控制它们的顺序（实质上是禁止特定指令重排序或插入内存屏障）。对于其他的happens-before原则也可以这样分析。</p>
+<p>这样看来，在机器层面，JVM就像在想尽办法放宽对程序的指令重排序。在保证结果的前提下，尽可能允许能提高效率的指令重排序。</p>
+<p>那么问题来了，就以volatile的语义为例。在JVM如此灵活的情况下，对volatile变量的写一定会刷新到主内存去吗？</p>
 
       
     </div>
@@ -326,8 +345,8 @@
         <div class="post-nav">
           <div class="post-nav-next post-nav-item">
             
-              <a href="/2019/08/15/开始/" rel="next" title="对象一定在堆上吗？">
-                <i class="fa fa-chevron-left"></i> 对象一定在堆上吗？
+              <a href="/2019/08/29/常见网络协议/" rel="next" title="常见网络协议">
+                <i class="fa fa-chevron-left"></i> 常见网络协议
               </a>
             
           </div>
@@ -336,8 +355,8 @@
 
           <div class="post-nav-prev post-nav-item">
             
-              <a href="/2019/08/19/Http请求与RPC/" rel="prev" title="Http请求与RPC">
-                Http请求与RPC <i class="fa fa-chevron-right"></i>
+              <a href="/2019/09/10/Java内存模型/" rel="prev" title="Java内存模型">
+                Java内存模型 <i class="fa fa-chevron-right"></i>
               </a>
             
           </div>
@@ -406,7 +425,7 @@
               
                 <a href="/archives/">
               
-                  <span class="site-state-item-count">5</span>
+                  <span class="site-state-item-count">9</span>
                   <span class="site-state-item-name">posts</span>
                 </a>
               </div>
