@@ -79,20 +79,17 @@
 
 
 
-<meta name="description" content="前言：本文单纯记录两个网络协议的特点，类似笔记，没有自己的想法，比较枯燥。">
+<meta name="description" content="开始写博客啦啦啦噜噜噜 啦噜啦噜。 咳，今天是开始写博客的第一天。 我这篇博客并不是水，而是要事先作个说明： 1、我的观点并不一定都是对的，但一定是有充分的证据来支撑的。 2、这里的博客都是原创的。 3、由于本人画图比较丑，所以贴的图会比较少。 4、看完这篇文章你并不是毫无收获的，你会发现，写一篇简洁而优雅的博客是那么的简单。">
 <meta property="og:type" content="article">
-<meta property="og:title" content="常见网络协议">
-<meta property="og:url" content="http://yoursite.com/2019/08/29/常见网络协议/index.html">
+<meta property="og:title" content="Markdown使用文档">
+<meta property="og:url" content="http://yoursite.com/2019/08/15/开场白/index.html">
 <meta property="og:site_name" content="高手的博客">
-<meta property="og:description" content="前言：本文单纯记录两个网络协议的特点，类似笔记，没有自己的想法，比较枯燥。">
+<meta property="og:description" content="开始写博客啦啦啦噜噜噜 啦噜啦噜。 咳，今天是开始写博客的第一天。 我这篇博客并不是水，而是要事先作个说明： 1、我的观点并不一定都是对的，但一定是有充分的证据来支撑的。 2、这里的博客都是原创的。 3、由于本人画图比较丑，所以贴的图会比较少。 4、看完这篇文章你并不是毫无收获的，你会发现，写一篇简洁而优雅的博客是那么的简单。">
 <meta property="og:locale" content="en">
-<meta property="og:image" content="http://yoursite.com/.com//nimendedage/Desktop/Blog/pic/DNS%E5%9B%BE%E8%BF%AD%E4%BB%A3%E6%9F%A5%E6%89%BE.jpg">
-<meta property="og:image" content="http://yoursite.com/.com//nimendedage/Desktop/Blog/pic/DNS%E5%9B%BE%E9%80%92%E5%BD%92%E6%9F%A5%E6%89%BE.jpg">
-<meta property="og:updated_time" content="2019-09-10T08:31:24.905Z">
+<meta property="og:updated_time" content="2019-09-11T11:16:09.541Z">
 <meta name="twitter:card" content="summary">
-<meta name="twitter:title" content="常见网络协议">
-<meta name="twitter:description" content="前言：本文单纯记录两个网络协议的特点，类似笔记，没有自己的想法，比较枯燥。">
-<meta name="twitter:image" content="http://yoursite.com/.com//nimendedage/Desktop/Blog/pic/DNS%E5%9B%BE%E8%BF%AD%E4%BB%A3%E6%9F%A5%E6%89%BE.jpg">
+<meta name="twitter:title" content="Markdown使用文档">
+<meta name="twitter:description" content="开始写博客啦啦啦噜噜噜 啦噜啦噜。 咳，今天是开始写博客的第一天。 我这篇博客并不是水，而是要事先作个说明： 1、我的观点并不一定都是对的，但一定是有充分的证据来支撑的。 2、这里的博客都是原创的。 3、由于本人画图比较丑，所以贴的图会比较少。 4、看完这篇文章你并不是毫无收获的，你会发现，写一篇简洁而优雅的博客是那么的简单。">
 
 
 
@@ -122,13 +119,13 @@
 
 
 
-  <link rel="canonical" href="http://yoursite.com/2019/08/29/常见网络协议/">
+  <link rel="canonical" href="http://yoursite.com/2019/08/15/开场白/">
 
 
 
 
 
-  <title>常见网络协议 | 高手的博客</title>
+  <title>Markdown使用文档 | 高手的博客</title>
   
 
 
@@ -235,7 +232,7 @@
   
   
   <div class="post-block">
-    <link itemprop="mainEntityOfPage" href="http://yoursite.com/2019/08/29/常见网络协议/">
+    <link itemprop="mainEntityOfPage" href="http://yoursite.com/2019/08/15/开场白/">
 
     <span hidden itemprop="author" itemscope itemtype="http://schema.org/Person">
       <meta itemprop="name" content="bingjie.du@xiaobao100.com">
@@ -252,7 +249,7 @@
 
         
         
-          <h1 class="post-title" itemprop="name headline">常见网络协议</h1>
+          <h1 class="post-title" itemprop="name headline">Markdown使用文档</h1>
         
 
         <div class="post-meta">
@@ -264,8 +261,8 @@
               
                 <span class="post-meta-item-text">Posted on</span>
               
-              <time title="Post created" itemprop="dateCreated datePublished" datetime="2019-08-29T10:18:50+08:00">
-                2019-08-29
+              <time title="Post created" itemprop="dateCreated datePublished" datetime="2019-08-15T18:57:20+08:00">
+                2019-08-15
               </time>
             
 
@@ -302,28 +299,14 @@
       
 
       
-        <hr>
-<p>前言：本文单纯记录两个网络协议的特点，类似笔记，没有自己的想法，比较枯燥。</p>
-<a id="more"></a>
-
-<p>###DNS协议</p>
-<p>简介：</p>
-<p>翻译过来就是域名系统协议，提供根据域名返回ip地址的服务。<br>它其实就是一个使得主机能够查询分布式数据库的应用层协议。</p>
-<p>底层协议：</p>
-<p>DNS可以使用UDP/TCP进行传输，使用的端口号都为53，大多数情况下都是用UDP进行传输，只有当返回的响应过大或是DNS服务器去同步更新数据时才会使用TCP进行传输。</p>
-<p>功能步骤：</p>
-<p>在浏览器中访问域名时，系统默认先访问host文件查看是否存在访问域名的映射关系，若不存在，就将请求发送给本地DNS服务器，在本地服务器也找不到映射关系的情况下，会继续向上级服务器发送请求，此时有两种不同的查询方式——递归查询和迭代查询。</p>
-<p>解析顺序大致分为这几个步骤：（迭代）<br>1.浏览器缓存<br>2.系统缓存<br>3.路由器缓存<br>4.本地DNS服务器缓存<br>5.根域名服务器<br>6.顶级域名服务器<br>7.主域名服务器<br>8.本地DNS服务器缓存<br>（主域名服务器查找自身缓存，没有就去下一级域名服务器查找，直到找到）<br><img src="/.com//nimendedage/Desktop/Blog/pic/DNS%E5%9B%BE%E8%BF%AD%E4%BB%A3%E6%9F%A5%E6%89%BE.jpg" alt="DNS迭代查询"></p>
-<p>DNS本地服务器迭代查询</p>
-<p><img src="/.com//nimendedage/Desktop/Blog/pic/DNS%E5%9B%BE%E9%80%92%E5%BD%92%E6%9F%A5%E6%89%BE.jpg" alt="DNS递归查询"></p>
-<p>DNS本地服务器递归查询</p>
-<p>###ARP协议</p>
-<p>简介：</p>
-<p>1.ARP即地址解析协议，用于实现从IP地址到MAC地址的映射，即询问目标IP对应的MAC地址。</p>
-<p>2.在网络通信中，主机和主机通信的数据包需要依据OSI模型从上到下进行数据封装，当数据封装完整后，再向外发出。所以在局域网的通信中，不仅需要源目IP地址的封装，也需要源目MAC的封装。</p>
-<p>3.一般情况下，上层应用程序更多关心IP地址而不关心MAC地址，所以需要通过ARP协议来获知目的主机的MAC地址，完成数据封装。</p>
-<p>功能步骤：</p>
-<p>在发送分自顶向下封装数据时，在链路层会需要IP对应的MAC地址，这就需要ARP协议根据IP获取对应的MAC地址。ARP协议将请求包（内包含源主机的IP地址与MAC地址）采用广播的方式发送，交换机或无线路由器收到广播包时，会将此数据发给同一局域网的其他所有主机。目的主机收到后，会以单播的方式将响应发送给源主机，这就实现了IP到MAC地址的解析。</p>
+        <h1 id="开始写博客啦啦啦噜噜噜"><a href="#开始写博客啦啦啦噜噜噜" class="headerlink" title="开始写博客啦啦啦噜噜噜"></a>开始写博客啦啦啦噜噜噜</h1><hr>
+<p>啦噜啦噜。</p>
+<p>咳，今天是开始写博客的第一天。</p>
+<p>我这篇博客并不是水，而是要事先作个说明：</p>
+<p><strong>1、我的观点并不一定都是对的，但一定是有充分的证据来支撑的。</strong></p>
+<p><strong>2、这里的博客都是原创的。</strong></p>
+<p><strong>3、由于本人画图比较丑，所以贴的图会比较少。</strong></p>
+<p><strong>4、看完这篇文章你并不是毫无收获的，你会发现，写一篇简洁而优雅的博客是那么的简单。</strong></p>
 
       
     </div>
@@ -348,18 +331,14 @@
         <div class="post-nav">
           <div class="post-nav-next post-nav-item">
             
-              <a href="/2019/08/28/单例模式/" rel="next" title="单例模式">
-                <i class="fa fa-chevron-left"></i> 单例模式
-              </a>
-            
           </div>
 
           <span class="post-nav-divider"></span>
 
           <div class="post-nav-prev post-nav-item">
             
-              <a href="/2019/09/02/深入理解happens-before规则/" rel="prev" title="happens-before规则与灵活的JVM">
-                happens-before规则与灵活的JVM <i class="fa fa-chevron-right"></i>
+              <a href="/2019/08/15/对象一定在堆上吗/" rel="prev" title="对象一定在堆上吗？">
+                对象一定在堆上吗？ <i class="fa fa-chevron-right"></i>
               </a>
             
           </div>
@@ -412,8 +391,17 @@
       
 
       
+        <ul class="sidebar-nav motion-element">
+          <li class="sidebar-nav-toc sidebar-nav-active" data-target="post-toc-wrap">
+            Table of Contents
+          </li>
+          <li class="sidebar-nav-overview" data-target="site-overview-wrap">
+            Overview
+          </li>
+        </ul>
+      
 
-      <section class="site-overview-wrap sidebar-panel sidebar-panel-active">
+      <section class="site-overview-wrap sidebar-panel">
         <div class="site-overview">
           <div class="site-author motion-element" itemprop="author" itemscope itemtype="http://schema.org/Person">
             
@@ -455,6 +443,22 @@
         </div>
       </section>
 
+      
+      <!--noindex-->
+        <section class="post-toc-wrap motion-element sidebar-panel sidebar-panel-active">
+          <div class="post-toc">
+
+            
+              
+            
+
+            
+              <div class="post-toc-content"><ol class="nav"><li class="nav-item nav-level-1"><a class="nav-link" href="#开始写博客啦啦啦噜噜噜"><span class="nav-number">1.</span> <span class="nav-text">开始写博客啦啦啦噜噜噜</span></a></li></ol></div>
+            
+
+          </div>
+        </section>
+      <!--/noindex-->
       
 
       
