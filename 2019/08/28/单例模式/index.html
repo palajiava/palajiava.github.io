@@ -79,17 +79,17 @@
 
 
 
-<meta name="description" content="就像一开始不懂CAS为什么要解决ABA问题，我现在也不懂为什么单例模式就得防反射和反序列化。">
+<meta name="description" content="就像一开始不懂CAS为什么要解决ABA问题，我直到现在也不懂为什么单例模式就得防反射和反序列化。 单例模式可以算是我接触的第一个设计模式了。思想简单，应用广泛，然而实现一个可靠的单例模式却不是那么容易。 就像把大象放冰箱需要三步一样，一个简单的单例模式有三个要素。 1、私有静态实例 2、公有获取实例的静态方法 3、构造函数私有化 就像这样 123456789101112public class">
 <meta property="og:type" content="article">
-<meta property="og:title" content="单例模式">
+<meta property="og:title" content="废话连篇单例模式">
 <meta property="og:url" content="http://yoursite.com/2019/08/28/单例模式/index.html">
 <meta property="og:site_name" content="高手的博客">
-<meta property="og:description" content="就像一开始不懂CAS为什么要解决ABA问题，我现在也不懂为什么单例模式就得防反射和反序列化。">
+<meta property="og:description" content="就像一开始不懂CAS为什么要解决ABA问题，我直到现在也不懂为什么单例模式就得防反射和反序列化。 单例模式可以算是我接触的第一个设计模式了。思想简单，应用广泛，然而实现一个可靠的单例模式却不是那么容易。 就像把大象放冰箱需要三步一样，一个简单的单例模式有三个要素。 1、私有静态实例 2、公有获取实例的静态方法 3、构造函数私有化 就像这样 123456789101112public class">
 <meta property="og:locale" content="en">
-<meta property="og:updated_time" content="2019-09-10T08:34:57.593Z">
+<meta property="og:updated_time" content="2019-09-20T11:10:50.691Z">
 <meta name="twitter:card" content="summary">
-<meta name="twitter:title" content="单例模式">
-<meta name="twitter:description" content="就像一开始不懂CAS为什么要解决ABA问题，我现在也不懂为什么单例模式就得防反射和反序列化。">
+<meta name="twitter:title" content="废话连篇单例模式">
+<meta name="twitter:description" content="就像一开始不懂CAS为什么要解决ABA问题，我直到现在也不懂为什么单例模式就得防反射和反序列化。 单例模式可以算是我接触的第一个设计模式了。思想简单，应用广泛，然而实现一个可靠的单例模式却不是那么容易。 就像把大象放冰箱需要三步一样，一个简单的单例模式有三个要素。 1、私有静态实例 2、公有获取实例的静态方法 3、构造函数私有化 就像这样 123456789101112public class">
 
 
 
@@ -125,7 +125,7 @@
 
 
 
-  <title>单例模式 | 高手的博客</title>
+  <title>废话连篇单例模式 | 高手的博客</title>
   
 
 
@@ -249,7 +249,7 @@
 
         
         
-          <h1 class="post-title" itemprop="name headline">单例模式</h1>
+          <h1 class="post-title" itemprop="name headline">废话连篇单例模式</h1>
         
 
         <div class="post-meta">
@@ -300,7 +300,46 @@
 
       
         <hr>
-<p>就像一开始不懂CAS为什么要解决ABA问题，我现在也不懂为什么单例模式就得防反射和反序列化。</p>
+<p>就像一开始不懂CAS为什么要解决ABA问题，我直到现在也不懂为什么单例模式就得防反射和反序列化。</p>
+<p>单例模式可以算是我接触的第一个设计模式了。思想简单，应用广泛，然而实现一个可靠的单例模式却不是那么容易。</p>
+<p>就像把大象放冰箱需要三步一样，一个简单的单例模式有三个要素。</p>
+<p>1、私有静态实例</p>
+<p>2、公有获取实例的静态方法</p>
+<p>3、构造函数私有化</p>
+<p>就像这样</p>
+<figure class="highlight java"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br><span class="line">9</span><br><span class="line">10</span><br><span class="line">11</span><br><span class="line">12</span><br></pre></td><td class="code"><pre><span class="line"><span class="keyword">public</span> <span class="class"><span class="keyword">class</span> <span class="title">SingleDog</span> </span>&#123;</span><br><span class="line"></span><br><span class="line">    <span class="keyword">private</span> <span class="keyword">static</span> SingleDog singleDog = <span class="keyword">new</span> SingleDog();</span><br><span class="line"></span><br><span class="line">    <span class="function"><span class="keyword">private</span> <span class="title">SingleDog</span><span class="params">()</span></span>&#123;</span><br><span class="line"></span><br><span class="line">    &#125;</span><br><span class="line"></span><br><span class="line">    <span class="function"><span class="keyword">public</span> <span class="keyword">static</span> SingleDog <span class="title">getSingleDog</span><span class="params">()</span></span>&#123;</span><br><span class="line">        <span class="keyword">return</span> singleDog;</span><br><span class="line">    &#125;</span><br><span class="line">&#125;</span><br></pre></td></tr></table></figure>
+
+<p>这种写法被称为饿汉式单例，还有一种懒汉式单例，就像这样</p>
+<figure class="highlight java"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br><span class="line">9</span><br><span class="line">10</span><br><span class="line">11</span><br><span class="line">12</span><br><span class="line">13</span><br><span class="line">14</span><br><span class="line">15</span><br><span class="line">16</span><br></pre></td><td class="code"><pre><span class="line"><span class="keyword">public</span> <span class="class"><span class="keyword">class</span> <span class="title">SingleDog</span> </span>&#123;</span><br><span class="line"></span><br><span class="line">    <span class="keyword">private</span> <span class="keyword">static</span> SingleDog singleDog;</span><br><span class="line"></span><br><span class="line">    <span class="function"><span class="keyword">private</span> <span class="title">SingleDog</span><span class="params">()</span></span>&#123;</span><br><span class="line"></span><br><span class="line">    &#125;</span><br><span class="line"></span><br><span class="line">    <span class="function"><span class="keyword">public</span> <span class="keyword">static</span> SingleDog <span class="title">getSingleDog</span><span class="params">()</span></span>&#123;</span><br><span class="line">        <span class="keyword">if</span>(<span class="keyword">null</span> == singleDog)&#123;</span><br><span class="line">        	<span class="comment">//1</span></span><br><span class="line">            singleDog = <span class="keyword">new</span> SingleDog();</span><br><span class="line">        &#125;</span><br><span class="line">        <span class="keyword">return</span> singleDog;</span><br><span class="line">    &#125;</span><br><span class="line">&#125;</span><br></pre></td></tr></table></figure>
+
+<p>是“饿”是“懒”，取决于是在一开始就创建这个“单例”，还是在调用获取单例的方法时再创建这个“单例”，个人觉得这两个名字还是挺形象的。</p>
+<p>从内存的角度来看，懒汉式单例必然优于饿汉式单例，因为在这个“单例”完全不被使用的情况下，懒汉式单例就不会创建这个对象，不会占用内存。相对而言，饿汉式单例在一开始类加载的初始化阶段就创建了这个对象，就算完全没有访问这个对象，它也一直存在并占据着一部分内存，这在一定程度上可以称为“内存泄漏”。</p>
+<p>这样看来，饿汉式明显是优于懒汉式的一种方案。然而事情才刚刚开始，历史经验告诉我们，好的方案往往都是带着代价诞生的。</p>
+<p>在并发的场景下，假设线程A作为第一个调用getSingleDog方法的线程，由于此时null == singleDog判断为真，它将进入这个代码块并准备执行下面的singleDog的实例初始化，就是到了代码中//1的位置。上述执行并没有问题，问题在于这时要是有其他线程（假设为线程B）也调用了getSingleDog方法，在线程1处于//1位置即并没有执行完下面的singleDog = new SingleDog()时，判断null == singleDog也还是为真，还是会进入下面的代码块，这样最后就会创建两个singleDog的实例。（这里举了个创建两个实例的例子，实际情况创建n个实例也是有可能的）</p>
+<p>提问，两只singleDog会发生什么？什么？你说它们有可能都是公的？</p>
+<p>跑偏了跑偏了。这不过是一个常见的不能再常见的并发问题，加个synchronized不就完事了。</p>
+<figure class="highlight java"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br><span class="line">9</span><br><span class="line">10</span><br><span class="line">11</span><br><span class="line">12</span><br><span class="line">13</span><br><span class="line">14</span><br><span class="line">15</span><br></pre></td><td class="code"><pre><span class="line"><span class="keyword">public</span> <span class="class"><span class="keyword">class</span> <span class="title">SingleDog</span> </span>&#123;</span><br><span class="line"></span><br><span class="line">    <span class="keyword">private</span> <span class="keyword">static</span> SingleDog singleDog;</span><br><span class="line"></span><br><span class="line">    <span class="function"><span class="keyword">private</span> <span class="title">SingleDog</span><span class="params">()</span></span>&#123;</span><br><span class="line"></span><br><span class="line">    &#125;</span><br><span class="line"></span><br><span class="line">    <span class="function"><span class="keyword">public</span> <span class="keyword">synchronized</span> <span class="keyword">static</span> SingleDog <span class="title">getSingleDog</span><span class="params">()</span></span>&#123;</span><br><span class="line">        <span class="keyword">if</span>(<span class="keyword">null</span> == singleDog)&#123;</span><br><span class="line">            singleDog = <span class="keyword">new</span> SingleDog();</span><br><span class="line">        &#125;</span><br><span class="line">        <span class="keyword">return</span> singleDog;</span><br><span class="line">    &#125;</span><br><span class="line">&#125;</span><br></pre></td></tr></table></figure>
+
+<p>这个synchronized虽然完美解决了并发的问题，但却给程序加了一个减速的buff。就算并发的情况很少，每次getSingleDog还是得跟锁打交道啊。（别跟我扯偏向锁！）鉴于这个问题，有大神想出了下面这种双重检测方案。</p>
+<figure class="highlight java"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br><span class="line">9</span><br><span class="line">10</span><br><span class="line">11</span><br><span class="line">12</span><br><span class="line">13</span><br><span class="line">14</span><br><span class="line">15</span><br><span class="line">16</span><br><span class="line">17</span><br><span class="line">18</span><br><span class="line">19</span><br></pre></td><td class="code"><pre><span class="line"><span class="keyword">public</span> <span class="class"><span class="keyword">class</span> <span class="title">SingleDog</span> </span>&#123;</span><br><span class="line"></span><br><span class="line">    <span class="keyword">private</span> <span class="keyword">static</span> SingleDog singleDog;</span><br><span class="line"></span><br><span class="line">    <span class="function"><span class="keyword">private</span> <span class="title">SingleDog</span><span class="params">()</span></span>&#123;</span><br><span class="line"></span><br><span class="line">    &#125;</span><br><span class="line"></span><br><span class="line">    <span class="function"><span class="keyword">public</span> <span class="keyword">static</span> SingleDog <span class="title">getSingleDog</span><span class="params">()</span></span>&#123;</span><br><span class="line">        <span class="keyword">if</span>(<span class="keyword">null</span> == singleDog)&#123;</span><br><span class="line">            <span class="keyword">synchronized</span> (SingleDog.class)&#123;</span><br><span class="line">                <span class="keyword">if</span>(<span class="keyword">null</span> == singleDog)&#123;</span><br><span class="line">                    singleDog = <span class="keyword">new</span> SingleDog();</span><br><span class="line">                &#125;</span><br><span class="line">            &#125;</span><br><span class="line">        &#125;</span><br><span class="line">        <span class="keyword">return</span> singleDog;</span><br><span class="line">    &#125;</span><br><span class="line">&#125;</span><br></pre></td></tr></table></figure>
+
+<p>反正都是锁类对象，不如把这个锁粒度减小一点。</p>
+<p>这个方案真的够优秀了，这是我发自内心的赞叹。我猜测这个方案是使用了一段时间的，直到有一天有人发现自己程序中某一条线程读到了一个未初始化的对象。</p>
+<p>莫名其妙。</p>
+<p>了解指令重排序的可能会知道，这是系统为了提高效率而重新对指令进行的排序操作。就代码中的singleDog = new SingleDog()，正常的顺序应该是这样：</p>
+<p>1、为SingleDog对象分配内存空间</p>
+<p>2、初始化SingleDog对象</p>
+<p>3、将对象的引用赋值给singleDog</p>
+<p>经过指令重排序后，操作2有可能会排到操作3后面，此时在执行完操作3后若出现另一个线程调用了getSingleDog方法，就会返回一个未被初始化的对象。（线程A在执行完操作3后singleDog就不等于null了，但还没有执行操作2进行初始化）</p>
+<p>操作2可能还可以分成更多的指令，这样带来的结果有可能就是某个线程读到了一个“初始化一半的对象”，令人毛骨悚然。</p>
+<p>那这个问题该怎么解决呢？</p>
+<p>回想起之前学到的volatile内存语义中，有禁止指令重排序（事实上没有那么绝对）这一条。没错，这就是我们的救星！</p>
+<figure class="highlight java"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br><span class="line">9</span><br><span class="line">10</span><br><span class="line">11</span><br><span class="line">12</span><br><span class="line">13</span><br><span class="line">14</span><br><span class="line">15</span><br><span class="line">16</span><br><span class="line">17</span><br><span class="line">18</span><br><span class="line">19</span><br></pre></td><td class="code"><pre><span class="line"><span class="keyword">public</span> <span class="class"><span class="keyword">class</span> <span class="title">SingleDog</span> </span>&#123;</span><br><span class="line"></span><br><span class="line">    <span class="keyword">private</span> <span class="keyword">volatile</span> <span class="keyword">static</span> SingleDog singleDog;</span><br><span class="line"></span><br><span class="line">    <span class="function"><span class="keyword">private</span> <span class="title">SingleDog</span><span class="params">()</span></span>&#123;</span><br><span class="line"></span><br><span class="line">    &#125;</span><br><span class="line"></span><br><span class="line">    <span class="function"><span class="keyword">public</span> <span class="keyword">static</span> SingleDog <span class="title">getSingleDog</span><span class="params">()</span></span>&#123;</span><br><span class="line">        <span class="keyword">if</span>(<span class="keyword">null</span> == singleDog)&#123;</span><br><span class="line">            <span class="keyword">synchronized</span> (SingleDog.class)&#123;</span><br><span class="line">                <span class="keyword">if</span>(<span class="keyword">null</span> == singleDog)&#123;</span><br><span class="line">                    singleDog = <span class="keyword">new</span> SingleDog();</span><br><span class="line">                &#125;</span><br><span class="line">            &#125;</span><br><span class="line">        &#125;</span><br><span class="line">        <span class="keyword">return</span> singleDog;</span><br><span class="line">    &#125;</span><br><span class="line">&#125;</span><br></pre></td></tr></table></figure>
+
+<p>把singleDog变量设成volatile，这样在并发的情况下，仍能保持singleDog对象的初始化 happens-before 该对象的获取（有关happens-before请看我另一篇博客），即禁止了指令重排序。这样就不会再出现读到“初始化一半的对象”这样的事情了。</p>
+<p>其实关于这个还有别的解决方案，静态内部类通过类加载的特殊锁机制也能保证单例对象只会被创建一次，有兴趣的同学可以自行查阅相关资料。</p>
+<p>讲了那么多，其实这还不是最完善的单例模式。</p>
+<p>要保证单例的绝对唯一性，我们还要防止反射调用私有构造函数、反序列化和克隆的操作。解决方案分别为在私有的构造方法里加入调用时抛出异常的逻辑、重写对象的readResovle方法返回单例对象和重写对象的clone方法返回单例对象。</p>
 
       
     </div>
