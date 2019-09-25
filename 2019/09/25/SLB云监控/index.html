@@ -79,17 +79,20 @@
 
 
 
-<meta name="description" content="记得那是在朋友的简历上，项目经验这一块，他用RESTful风格描述他的项目架构。当时我一脸疑惑，便去搜索了这个词的意思，看了半天也没有看懂。">
+<meta name="description" content="这是本人第一次接到运维方的需求，说是需要做一个系统来监控SLB底下挂的ECS集群中某些接口的健康状态，并附上了长长的接口清单。">
 <meta property="og:type" content="article">
-<meta property="og:title" content="何为RESTful">
-<meta property="og:url" content="http://yoursite.com/2019/08/19/何为RESTful/index.html">
+<meta property="og:title" content="我们想要的云监控">
+<meta property="og:url" content="http://yoursite.com/2019/09/25/SLB云监控/index.html">
 <meta property="og:site_name" content="高手的博客">
-<meta property="og:description" content="记得那是在朋友的简历上，项目经验这一块，他用RESTful风格描述他的项目架构。当时我一脸疑惑，便去搜索了这个词的意思，看了半天也没有看懂。">
+<meta property="og:description" content="这是本人第一次接到运维方的需求，说是需要做一个系统来监控SLB底下挂的ECS集群中某些接口的健康状态，并附上了长长的接口清单。">
 <meta property="og:locale" content="en">
-<meta property="og:updated_time" content="2019-09-10T08:30:59.953Z">
+<meta property="og:image" content="http://yoursite.com/.com//SLB-1.png">
+<meta property="og:image" content="http://yoursite.com/.com//SLB-3.png">
+<meta property="og:updated_time" content="2019-09-25T10:24:28.228Z">
 <meta name="twitter:card" content="summary">
-<meta name="twitter:title" content="何为RESTful">
-<meta name="twitter:description" content="记得那是在朋友的简历上，项目经验这一块，他用RESTful风格描述他的项目架构。当时我一脸疑惑，便去搜索了这个词的意思，看了半天也没有看懂。">
+<meta name="twitter:title" content="我们想要的云监控">
+<meta name="twitter:description" content="这是本人第一次接到运维方的需求，说是需要做一个系统来监控SLB底下挂的ECS集群中某些接口的健康状态，并附上了长长的接口清单。">
+<meta name="twitter:image" content="http://yoursite.com/.com//SLB-1.png">
 
 
 
@@ -119,13 +122,13 @@
 
 
 
-  <link rel="canonical" href="http://yoursite.com/2019/08/19/何为RESTful/">
+  <link rel="canonical" href="http://yoursite.com/2019/09/25/SLB云监控/">
 
 
 
 
 
-  <title>何为RESTful | 高手的博客</title>
+  <title>我们想要的云监控 | 高手的博客</title>
   
 
 
@@ -232,7 +235,7 @@
   
   
   <div class="post-block">
-    <link itemprop="mainEntityOfPage" href="http://yoursite.com/2019/08/19/何为RESTful/">
+    <link itemprop="mainEntityOfPage" href="http://yoursite.com/2019/09/25/SLB云监控/">
 
     <span hidden itemprop="author" itemscope itemtype="http://schema.org/Person">
       <meta itemprop="name" content="bingjie.du@xiaobao100.com">
@@ -249,7 +252,7 @@
 
         
         
-          <h1 class="post-title" itemprop="name headline">何为RESTful</h1>
+          <h1 class="post-title" itemprop="name headline">我们想要的云监控</h1>
         
 
         <div class="post-meta">
@@ -261,8 +264,8 @@
               
                 <span class="post-meta-item-text">Posted on</span>
               
-              <time title="Post created" itemprop="dateCreated datePublished" datetime="2019-08-19T17:58:04+08:00">
-                2019-08-19
+              <time title="Post created" itemprop="dateCreated datePublished" datetime="2019-09-25T14:36:00+08:00">
+                2019-09-25
               </time>
             
 
@@ -300,24 +303,41 @@
 
       
         <hr>
-<p>记得那是在朋友的简历上，项目经验这一块，他用RESTful风格描述他的项目架构。当时我一脸疑惑，便去搜索了这个词的意思，看了半天也没有看懂。</p>
+<p>这是本人第一次接到运维方的需求，说是需要做一个系统来监控SLB底下挂的ECS集群中某些接口的健康状态，并附上了长长的接口清单。</p>
 <a id="more"></a>
 
-<p>后来也断断续续地有去查有关RESTful用途的资料，得到的总是一篇篇五花八门的文章，至少当时的我并不能综合它们得出最后结论。</p>
-<p>好在我有个“查户口”的习惯，比起问“什么是RESTful风格”，我更喜欢问“RESTful为什么会出现”。翻来覆去的，总算把它弄清楚了。</p>
-<p>对前端来讲，要访问后端的接口，通常是通过url。</p>
-<p>这里有必要讲一下url的概念。</p>
-<p>Uniform Resource Locations，翻译过来就是统一资源定位符，可以简单理解为互联网上某个资源的地址。它很容易跟uri（统一资源标识符）搞混。我们可以举个例子来对它们进行区别。比如我，温州蔡徐坤，现在独自在杭州XX地方居住。那么在温州蔡徐坤只是我一个人的外号的条件下，唯一标识我的，既可以是温州蔡徐坤这个外号，又可以是XX地方（我的住址），这就是统一资源标识符uri。当然也可以用其他唯一的信息，比如身份证号。但能唯一定位我的，只有我的住址。你只有照着我的住址，才能来到我家找到我，这不是盯着我的名字或是身份证号就能做到的。所以，这里只有我的住址才是我的url。相应的，在服务器上，url就是某个资源的地址，通过这个地址是可以找到这个资源的。有人把url理解为uri的子集，我觉得ok。</p>
-<p>下面是一段典型的修改信息的url，用的是post请求。</p>
-<figure class="highlight java"><table><tr><td class="gutter"><pre><span class="line">1</span><br></pre></td><td class="code"><pre><span class="line">http:<span class="comment">//localhost:8080/XXX/XXXInfo/update</span></span><br></pre></td></tr></table></figure>
-
-<p>如果你看的那篇文章叫《RESTFul是什么》或是《RESTFul的优点》，他们一定会在这段代码的下方开门见山地写道“这个接口不符合RESTful风格！RESTful风格的url得这样写··· ···”。我想这就是造成我始终不太理解RESTful的原因。RESTFul不是对立于非RESTful产生的，它俩并不是共存的。我想RESTful风格的作者提出这个观点的初衷是想直接扼杀掉我们所谓的非RESTful风格，却被那些勿囵吞枣又为人师表的作者写的仿佛是一种新的API风格。我们再看上面这段url。</p>
-<p>很奇怪，这似乎不符合url的概念。一个地址里居然有动词update，这种感觉就像把大象放冰箱一共三步，这完全不符合url的含义。真正的url需要的应该仅仅是名词才对。</p>
-<p>就这一个原因就够了，就像莱克星顿的枪声一样。当我们的url不再是真正意义上的统一资源定位符时，它便成为了RESTful风格诞生的导火线。虽然RESTful还对无状态等一系列其他的点作了要求，但也都是基于我们对Http请求的错误使用做的打包。</p>
-<p>这样看来，所谓的RESTful风格其实早就存在，即“一开始Http协议的设计者希望我们使用Http的方式”。只是我们的做法偏离了他们的期望，继而才有了所谓的RESTFul风格的出现。</p>
-<p>我有看到过一篇标题为《一分钟理解什么是REST和RESTful》的文章。它最后一段话总结道“那这种风格的接口有什么好处呢？前后端分离。前端拿到数据只负责展示和渲染，不对数据做任何处理。后端处理数据并以JSON格式传输出去”，对于这个观点我实在是不能苟同。</p>
-<p>其实RESTful并没有我们想象中那么陌生，它只是那样一种想尽可能遵守Http协议的规范与尽可能使用Http请求的资源的手段。它是Http协议的设计者们最后的倔强。</p>
-<p>在实际开发中，也不用特别在意项目的接口是否遵循了RESTful风格。在某些情况下，非RESTful风格所带来的可读性也是不错的优势。</p>
+<p>当时由于这个需求是间接传达到我手里的，我便直接按照他说的去阿里云开发者手册中寻找是否有获取到底下挂的ECS的ip列表的方法，准备中规中矩地通过遍历ip列表、发送Http请求、获取响应解析、钉钉报警的方式来实现这个监控。</p>
+<p>在翻阅阿里云开发者手册时，我偶然发现它有一个自带的健康检查的功能。虽然这个功能仅仅针对某一台ECS，并不能精确到某一个接口（因为存在，ECS是好的但接口功能却挂掉的情况），无法满足需求。但凭借这一点，我却不能不相信阿里云会没有提供精确到某一个接口的监控服务，于是我找到我身边的运维小伙伴。</p>
+<p>需求并不是出自这位小伙伴。但当我把我所知道的需求一五一十地告诉他时，他强烈表示，阿里云自带的云监控系统完全满足这个需求，甚至就是为了解决这个需求而诞生的，他们早就在用这个云监控了。</p>
+<p>早就在用？</p>
+<p>当我再次想到这个需求是出自运维方时，我渐渐意识到事情远没有那么简单。我便找到了需求方，希望得知云监控不适用的原因，即导致这个项目需求诞生的导火线。</p>
+<p>由于我没有运维方查看云监控的权限，这里我画一张简单的架构图，用文字简单描述一下他们“早就在用的云监控”。</p>
+<p><img src="SLB-1.png" alt="SLB-1"></p>
+<p>如图，一台SLB暴露在公网，底下挂着若干的ECS都部署在内网中。</p>
+<p>阿里云向我们提供这样一种云监控服务：我们可以通过直接在阿里云平台上配置每次监控请求间隔的时间，以及希望监控的ip+监控接口的路径，这样就可以实现每隔固定时间SLB就会向底下的ECS发送探测请求。还可以对请求的响应时间、响应值配置一个阈值，当响应时间或是响应值超过阈值大小时，可以触发它的报警服务。简直就是马杀鸡一条龙。</p>
+<p>遗憾的是这并不适用于我们的某些业务。</p>
+<p>举个例子，当某个ECS集群中的每台服务器上部署了两个站点时，这种监控就会行不通。</p>
+<p>一般一台部署多个站点的服务器，上面都会通过nginx、IIS、tomcat等这服务来实现针对多域名多站点的支持。当在正常情况下，一个外部的请求进来时，它会通过这个请求头中携带的域名信息来区分进入哪一个站点。也就是说，只有通过域名才能访问这样的服务器，云监控中的监控ip配置在这里不可行。</p>
+<p>除此之外，我们还考虑到，基于现有的云监控方案只能监控到事先配置好ip的那些ECS，在服务器有大变动的前提下，每次变动都需要修改监控的配置，十分麻烦。</p>
+<p>综上，可以总结出这个监控系统项目诞生的背景：</p>
+<p>1、应用的访问对域名的依赖</p>
+<p>2、ECS云服务器极大的变动可能性</p>
+<p>这也是云监控目前不能满足的两种场景。</p>
+<p>对于上述第一条，在阿里云平台上可能可以这样解决：给SLB底下每台ECS绑一个域名，然后通过另一种名为“可用性检测”的方式去探测（这种方式似乎可以配置域名），打印日志，再通过日志对响应进行分析，报警。</p>
+<p>然而这种方案对第二条矛盾完全奈何不了，因为这种监控也是需要实现配置好的，是静态的。</p>
+<p>要想获取到实时动态的ECS列表，从ECS出发是不可行的。</p>
+<p>于是我们决定从SLB入手，每次通过SLB自带的接口获取到底下挂的服务器列表的信息。这样获取到的服务器列表便是动态的，实时的。缺点是，我们得通过一个程序定时去调用它。</p>
+<p>这也意味着我们的探测源从阿里云的SLB变成了我们的监控应用。为了使我们的监控应用能够直接访问目的ECS，这个监控应用得部署在与这些ECS同一内网下。</p>
+<p>这样解决了第二条矛盾，剩下的就是如何解决第一条了。</p>
+<p>通过SLB自带的接口获取到的服务器列表里只有ip信息，但这个域名是我们已知的信息，是固定不变的。所以现在问题变成了“如何让我们的监控系统通过域名遍历ECS列表”，鉴于现有的情报，我们有两种方案。</p>
+<p>方案一、每次访问一台ECS前，都修改一次本地hosts文件，使域名映射要访问的目的ip，实现直接访问。</p>
+<p>方案二、由于nginx、IIS、tomcat等这类服务是通过Http请求头中的域名信息来区分站点，我们可以通过在每个Http请求头中加入域名信息，然后通过ip去访问，这样也能访问到响应的应用。</p>
+<p>就方案一而言，我们先不说这个方案技术性有多差。在我们想要并发地发送这些请求时，保证线程安全就成了需要去攻克的一个点。很明显在方案二可行的情况下，方案一是必然不会被考虑使用的。（其实我们是先想到的方案一，经过对站点区分过程的研究后才发现可以有方案二这样简单的方案）</p>
+<p>以下便是我们的最终敲定的方案</p>
+<p><img src="SLB-3.png" alt="SLB-3"></p>
+<p>其实在考虑能否使用阿里云自带的监控实现这个需求时还出现了许多的小问题，它们一次又一次试图打消我们想直接拿现有的监控偷懒的念头。不过由于我们脸皮够厚，都扛过来了。（为了想直接利用阿里云监控这个现有的设施，我的师傅甚至提出，我们自己写的监控应用会对线上服务器产生额外的压力，并发的情况下会有严重后果这样一说。我当时惊呆了）</p>
+<p>在这个过程中，为了搞清楚需求诞生的原因，我找了许多运维小伙伴沟通。有意思的是，每当与一个新的小伙伴聊时，他们总有新的现成的方案，并表示我说的需求可以满足。</p>
+<p>我想这里并不是需求沟通出了问题。从一开始师傅把项目丢给我时，他告诉我的需求就是正确的。就是需要一个监控应用，对SLB底下的所有ECS进行监控。问题在于我们没有搞清楚需求产生的原因，用我喜欢的话来说，就是“导致这个需求产生的导火线”。在我们没有搞清楚这一点之前，盲目地只顾需求的解决方案，反而会迷失方向。因为这根“导火线”，很有可能就是在这个需求中你需要去攻克的最大的难题。</p>
 
       
     </div>
@@ -342,8 +362,8 @@
         <div class="post-nav">
           <div class="post-nav-next post-nav-item">
             
-              <a href="/2019/08/15/对象一定在堆上吗/" rel="next" title="对象一定在堆上吗？">
-                <i class="fa fa-chevron-left"></i> 对象一定在堆上吗？
+              <a href="/2019/09/11/关于垃圾回收的一些疑问/" rel="next" title="关于垃圾回收">
+                <i class="fa fa-chevron-left"></i> 关于垃圾回收
               </a>
             
           </div>
@@ -351,10 +371,6 @@
           <span class="post-nav-divider"></span>
 
           <div class="post-nav-prev post-nav-item">
-            
-              <a href="/2019/08/21/关于sql的优化/" rel="prev" title="关于sql的优化">
-                关于sql的优化 <i class="fa fa-chevron-right"></i>
-              </a>
             
           </div>
         </div>
