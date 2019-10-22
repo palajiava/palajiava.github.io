@@ -86,13 +86,13 @@
 <meta property="og:site_name" content="高手的博客">
 <meta property="og:description" content="第一次接触到协程是在高考结束后的那个暑假。怀着不安的心情我打开了那个APP。生动的界面布局、主动的智能搜索引擎，无意间竟让好动的我在这一次的互动中变成了被动。选票、买票、出票一气呵成，但我们要讲的不是这个携程。">
 <meta property="og:locale" content="en">
-<meta property="og:image" content="http://yoursite.com/.com//%E5%BF%83%E7%94%B5%E5%9B%BE-%E5%8E%9F.png">
-<meta property="og:image" content="http://yoursite.com/.com//%E5%BF%83%E7%94%B5%E5%9B%BE-%E6%94%B9.png">
-<meta property="og:updated_time" content="2019-10-22T14:53:08.733Z">
+<meta property="og:image" content="http://yoursite.com/.com//ele-1.png">
+<meta property="og:image" content="http://yoursite.com/.com//ele-2.png">
+<meta property="og:updated_time" content="2019-10-22T15:23:09.402Z">
 <meta name="twitter:card" content="summary">
 <meta name="twitter:title" content="揭秘协程">
 <meta name="twitter:description" content="第一次接触到协程是在高考结束后的那个暑假。怀着不安的心情我打开了那个APP。生动的界面布局、主动的智能搜索引擎，无意间竟让好动的我在这一次的互动中变成了被动。选票、买票、出票一气呵成，但我们要讲的不是这个携程。">
-<meta name="twitter:image" content="http://yoursite.com/.com//%E5%BF%83%E7%94%B5%E5%9B%BE-%E5%8E%9F.png">
+<meta name="twitter:image" content="http://yoursite.com/.com//ele-1.png">
 
 
 
@@ -319,10 +319,10 @@
 <p>协程和函数——事件驱动模型</p>
 <p>看完上面讲的协程与线程有关调度方面的两个不同点之后，我相信大家在逻辑上已经大致建立了协程与线程某种对立关系，但我要一边拿拖鞋拍你的脸，一边告诉你：协程跟线程不是同一级别上的概念，多协程是建立在单线程的基础上的。</p>
 <p>为了更好地突出协程与线程的不同级别，也为了使协程与函数挂钩，我画了一张心电图。在此，我们假设：只有一个CPU。</p>
-<p><img src="/.com//%E5%BF%83%E7%94%B5%E5%9B%BE-%E5%8E%9F.png" alt="揭秘协程"></p>
+<p><img src="/.com//ele-1.png" alt="揭秘协程"></p>
 <p>如图所示是一个进程中四个线程的执行路径，每个线程在执行的路上都不免遇到函数调用（在图中体现为抽象的波动）。特别的是，第二个线程执行的是一个协程模型，路径上的每个波动都是一个协程。</p>
 <p>程序启动，CPU首先被分配到线程1上。线程1的代码被按序执行，直到进入函数1后发生了阻塞。这时由于线程调度的特点，线程1让出CPU，CPU被分配到了线程2上，开始新的时间片。线程2分配到CPU，会先运行主协程的指令，接着进入协程1。在执行协程1的指令时，遇到I/O阻塞操作。由于我们在代码中实现了人为调度，CPU会切换到协程2继续执行。若协程2在执行过程中没有被阻塞，则会一直执行下去直到完成，再切换到协程3（注意：于线程2的所有流程发生在一个时间片时间内，若在流程中途时间片结束，则会发生线程调度让出CPU）。如图所示，刚刚的流程下来一共发生了两次协程调度。</p>
-<p><img src="/.com//%E5%BF%83%E7%94%B5%E5%9B%BE-%E6%94%B9.png" alt="揭秘协程"></p>
+<p><img src="/.com//ele-2.png" alt="揭秘协程"></p>
 <p>经过上述分析，我想你起码已经明白了为什么说“协程跟线程不是同一级别的概念”，并且在目睹到协程调度发生在了线程调度后分配的CPU时间片中之后赞同了“多协程是建立在单线程的基础上的”这一观点。又臭又长的总结是需要反复理解的。</p>
 <p>我们可以把上述四条执行路径想象成各自线程run方法里面的内容。一个普通的线程run方法里一般有一些函数，当这个线程分到CPU时会按顺序执行这一个个函数，只有当前面的函数执行完才能继续执行后面的函数。相比之下，当某个线程的run方法里是一个多协程模型时，一个个函数就升级成为了一个个任务协程，这种函数是可以调度的。当A函数阻塞时，我们可以先切换到B函数执行，等到下一次并且A函数就绪时再去执行它（这里的下一次指的是主协程在任务协程没有完全执行完毕时还会重新去遍历没有执行完且在就绪状态的任务协程）。可调度的函数，即为协程。协程的调度是比线程调度再细一个粒度的调度。</p>
 <p>回过头来再将协程分别与线程、函数进行比较。我憋出了这样一句话：从调度方面，协程就像一种用户态的线程。从执行角度，一个线程可以由多个协程组成。</p>
