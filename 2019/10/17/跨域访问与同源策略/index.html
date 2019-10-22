@@ -79,19 +79,17 @@
 
 
 
-<meta name="description" content="在百度里搜索Java内存模型，看到相关结果的第一条，我陷入了沉思。">
+<meta name="description" content="最近忙于okr0.2版本的开发与测试。 坦诚地讲，这一版加的功能并不多，我主要负责Excel上传解析及后续的数据处理这一块。开发的时候感觉逻辑挺乱的，很难以一个比较流畅的方式灵活地将Excel里的内容提取封装。好在灵感乍现，找到了突破口，整个提取逻辑里竟有几分算法的味道。 我找到前端开发联调时，她刚与我师兄调完登录那块的功能。为了与后端联调，前端需要修改它的配置，将调用地址ip调成对应站点的ip">
 <meta property="og:type" content="article">
-<meta property="og:title" content="Java内存模型与Java内存区域">
-<meta property="og:url" content="http://yoursite.com/2019/09/10/Java内存模型与Java内存区域/index.html">
+<meta property="og:title" content="跨域访问——记一次后端开发对前端技术的体会">
+<meta property="og:url" content="http://yoursite.com/2019/10/17/跨域访问与同源策略/index.html">
 <meta property="og:site_name" content="高手的博客">
-<meta property="og:description" content="在百度里搜索Java内存模型，看到相关结果的第一条，我陷入了沉思。">
+<meta property="og:description" content="最近忙于okr0.2版本的开发与测试。 坦诚地讲，这一版加的功能并不多，我主要负责Excel上传解析及后续的数据处理这一块。开发的时候感觉逻辑挺乱的，很难以一个比较流畅的方式灵活地将Excel里的内容提取封装。好在灵感乍现，找到了突破口，整个提取逻辑里竟有几分算法的味道。 我找到前端开发联调时，她刚与我师兄调完登录那块的功能。为了与后端联调，前端需要修改它的配置，将调用地址ip调成对应站点的ip">
 <meta property="og:locale" content="en">
-<meta property="og:image" content="http://yoursite.com/.com//baidujingyan-JMM.png">
-<meta property="og:updated_time" content="2019-09-10T08:28:41.780Z">
+<meta property="og:updated_time" content="2019-10-22T08:53:46.329Z">
 <meta name="twitter:card" content="summary">
-<meta name="twitter:title" content="Java内存模型与Java内存区域">
-<meta name="twitter:description" content="在百度里搜索Java内存模型，看到相关结果的第一条，我陷入了沉思。">
-<meta name="twitter:image" content="http://yoursite.com/.com//baidujingyan-JMM.png">
+<meta name="twitter:title" content="跨域访问——记一次后端开发对前端技术的体会">
+<meta name="twitter:description" content="最近忙于okr0.2版本的开发与测试。 坦诚地讲，这一版加的功能并不多，我主要负责Excel上传解析及后续的数据处理这一块。开发的时候感觉逻辑挺乱的，很难以一个比较流畅的方式灵活地将Excel里的内容提取封装。好在灵感乍现，找到了突破口，整个提取逻辑里竟有几分算法的味道。 我找到前端开发联调时，她刚与我师兄调完登录那块的功能。为了与后端联调，前端需要修改它的配置，将调用地址ip调成对应站点的ip">
 
 
 
@@ -121,13 +119,13 @@
 
 
 
-  <link rel="canonical" href="http://yoursite.com/2019/09/10/Java内存模型与Java内存区域/">
+  <link rel="canonical" href="http://yoursite.com/2019/10/17/跨域访问与同源策略/">
 
 
 
 
 
-  <title>Java内存模型与Java内存区域 | 高手的博客</title>
+  <title>跨域访问——记一次后端开发对前端技术的体会 | 高手的博客</title>
   
 
 
@@ -234,7 +232,7 @@
   
   
   <div class="post-block">
-    <link itemprop="mainEntityOfPage" href="http://yoursite.com/2019/09/10/Java内存模型与Java内存区域/">
+    <link itemprop="mainEntityOfPage" href="http://yoursite.com/2019/10/17/跨域访问与同源策略/">
 
     <span hidden itemprop="author" itemscope itemtype="http://schema.org/Person">
       <meta itemprop="name" content="bingjie.du@xiaobao100.com">
@@ -251,7 +249,7 @@
 
         
         
-          <h1 class="post-title" itemprop="name headline">Java内存模型与Java内存区域</h1>
+          <h1 class="post-title" itemprop="name headline">跨域访问——记一次后端开发对前端技术的体会</h1>
         
 
         <div class="post-meta">
@@ -263,8 +261,8 @@
               
                 <span class="post-meta-item-text">Posted on</span>
               
-              <time title="Post created" itemprop="dateCreated datePublished" datetime="2019-09-10T11:55:37+08:00">
-                2019-09-10
+              <time title="Post created" itemprop="dateCreated datePublished" datetime="2019-10-17T16:34:59+08:00">
+                2019-10-17
               </time>
             
 
@@ -302,21 +300,20 @@
 
       
         <hr>
-<p>在百度里搜索Java内存模型，看到相关结果的第一条，我陷入了沉思。</p>
-<a id="more"></a>
-
-<p><img src="baidujingyan-JMM.png" alt="百度经验-JMM"></p>
-<p>犹记得第一次电话面试，自我介绍完后面试官第一个问题就是“请你讲讲Java内存模型”。</p>
-<p>当时我回答的不是这些，我把JMM面向开发者提供强有力的保障，面向机器则提供尽量宽松的约束、happens-before的微妙之处这些乱七八糟的全扯了一通。当时语速还特别快，说完之后面试官直接换了下一个问题，当时我的心凉透了。</p>
-<p>然而这并不意味着我回答的是错的，就上述图中这个答案，我很确定这是Java运行时数据区域（Java内存区域）的东西。</p>
-<p>Java内存区域&amp;Java内存模型傻傻分不清，其实这两个概念有一个本质性的区别——是否真实存在。</p>
-<p>Java内存区域是真实存在的，就像图中介绍的那样，Java内存区域中包含了程序计数器、Java虚拟机栈、本地方法栈、堆、方法区等区域。它们是真实存在的，它们占据着JVM中的几块内存。</p>
-<p>相较而言，Java内存模型就不是一个真实存在的东西。模型本来就是一个虚拟的概念，Java内存模型自然也是一个虚拟的概念。</p>
-<p>《并发编程的艺术》里有类似这样一句话：JMM定义了线程与主内存之间的抽象关系：线程之间的共享变量存储在主存，每个线程拥有自己的本地内存，线程读写变量与本地内存交互，而不是直接操作主存。这里的本地内存也是不存在的东西，实际上是为了使硬盘的存取速度与cpu更好的配合，在cpu中设置的缓存、寄存器等。可以说，Java内存模型是为了方便描述内存之间关系而虚拟出来一个概念模型，这个模型屏蔽了底层的内存结构，使得开发者可以不去了解它们。</p>
-<p>讲到这里，两者的区别其实已经很清晰了。</p>
-<p>我平时经常在帖子上看到有人把JMM的概念回答成了Java的那几块运行时数据区域。在我看来，这两者根本就没有可比性。</p>
-<p>最后扯一个顺序一致性模型的概念。在程序正确同步的条件下，JMM保证程序的运行结果与该程序在顺序一致性模型中执行的结果相同，即程序看起来就跟顺序执行一样。</p>
-<p>如果非要拿JMM跟什么做比较的话，就拿顺序一致性模型跟它比吧！</p>
+<p>最近忙于okr0.2版本的开发与测试。</p>
+<p>坦诚地讲，这一版加的功能并不多，我主要负责Excel上传解析及后续的数据处理这一块。开发的时候感觉逻辑挺乱的，很难以一个比较流畅的方式灵活地将Excel里的内容提取封装。好在灵感乍现，找到了突破口，整个提取逻辑里竟有几分算法的味道。</p>
+<p>我找到前端开发联调时，她刚与我师兄调完登录那块的功能。为了与后端联调，前端需要修改它的配置，将调用地址ip调成对应站点的ip。一切准备就绪，点击上传文件：NullPointerException。</p>
+<p>经查询，异常出自拦截器中对Token的验证，在获取Cookie这块，因取得的Cookie是null导致了这次空指针异常。在排除了一切可能之后我怀疑这是因为她登录时调用了之前配的师兄本机的站点的接口，在上传文件时才调用我站点的接口，不同的站点不共享Cookie，所以导致了这个问题。她也赞同了这个观点并且表示登录目前只能调用师兄那边的接口。鉴于之前看到她跟师兄好像调的挺麻烦的，我便决定把我这几个接口里边跟登录有关的代码注释掉，方便联调。</p>
+<p>有意思的来了。</p>
+<p>有点冒失的我在其中一个接口中落掉了一段与Cookie有关的代码，没有注释掉。但联调得到的结果却是获取到了Cookie之后的样子。</p>
+<p>我惊呆了。基于跨域访问的知识，我一口咬定登录也调的是我本机站点的接口，并要求重新测试上传文件的接口。但奇怪的事情最终还是发生了。无论我们测多少次，依旧是文件上传的接口请求没带Cookie，其余的接口请求带了Cookie。我们开始怀疑这个文件流请求的特殊性。</p>
+<p>我找来了另外一个前端开发人员，在他俩的对峙下得出最终结论：文件流的请求是Form请求而非Ajax请求，无法像Ajax请求那样走代理，Form请求的参数里没有设置Cookie的选项。我们暂且不去理会Form请求里有什么参数，在Form请求不走代理的前提下，Form请求与走代理的Ajax请求访问的域是不同的，就算Form请求可以设置Cookie，它们也无法共享Cookie。</p>
+<p>结合这段结论，查了相关资料，我对跨域访问的认识愈发清晰。</p>
+<p>以前我只知道，在同源策略的限制下，JS中不能访问非本源的站点，即不能访问除自己外别的站点。可这在目前的情况来看不成立——Form请求可以访问到别的站点。查了相关资料得知，同源策略只会限制Ajax请求，它不会对Form请求做限制，理由是Form请求并不是半双工的，并不会有安全问题。可我明明记得前端拿到了返回值呀。在得知了前端的确有使用Form请求且通过回调函数得到返回值的办法后，我开始怀疑浏览器只对Ajax请求做同源限制的真正原因，这里列出同源策略的三条限制内容：</p>
+<p>1、Cookie、LocalStorage 和 IndexDB 无法读取。</p>
+<p>2、DOM 无法获得。</p>
+<p>3、AJAX 请求不能发送。</p>
+<p>在这里我有个疑惑，既然同源策略是为了防止共享Cookie等信息所导致的问题，那我们限制不同域独立Cookie，做第一条限制就够了，为什么还要禁止Ajax请求访问非同源站点呢？是因为Ajax能跨过第一条限制吗？</p>
 
       
     </div>
@@ -341,8 +338,8 @@
         <div class="post-nav">
           <div class="post-nav-next post-nav-item">
             
-              <a href="/2019/09/02/深入理解happens-before规则/" rel="next" title="happens-before规则与灵活的JVM">
-                <i class="fa fa-chevron-left"></i> happens-before规则与灵活的JVM
+              <a href="/2019/10/16/跨域问题/" rel="next" title="跨域问题">
+                <i class="fa fa-chevron-left"></i> 跨域问题
               </a>
             
           </div>
@@ -351,8 +348,8 @@
 
           <div class="post-nav-prev post-nav-item">
             
-              <a href="/2019/09/11/关于垃圾回收的一些疑问/" rel="prev" title="关于垃圾回收">
-                关于垃圾回收 <i class="fa fa-chevron-right"></i>
+              <a href="/2019/10/21/揭秘协程/" rel="prev" title="揭秘协程">
+                揭秘协程 <i class="fa fa-chevron-right"></i>
               </a>
             
           </div>

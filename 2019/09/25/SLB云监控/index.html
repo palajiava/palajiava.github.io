@@ -88,7 +88,7 @@
 <meta property="og:locale" content="en">
 <meta property="og:image" content="http://yoursite.com/.com//SLB-1.png">
 <meta property="og:image" content="http://yoursite.com/.com//SLB-3.png">
-<meta property="og:updated_time" content="2019-09-25T10:24:28.228Z">
+<meta property="og:updated_time" content="2019-10-22T11:09:23.483Z">
 <meta name="twitter:card" content="summary">
 <meta name="twitter:title" content="我们想要的云监控">
 <meta name="twitter:description" content="这是本人第一次接到运维方的需求，说是需要做一个系统来监控SLB底下挂的ECS集群中某些接口的健康状态，并附上了长长的接口清单。">
@@ -335,7 +335,7 @@
 <p>就方案一而言，我们先不说这个方案技术性有多差。在我们想要并发地发送这些请求时，保证线程安全就成了需要去攻克的一个点。很明显在方案二可行的情况下，方案一是必然不会被考虑使用的。（其实我们是先想到的方案一，经过对站点区分过程的研究后才发现可以有方案二这样简单的方案）</p>
 <p>以下便是我们的最终敲定的方案</p>
 <p><img src="SLB-3.png" alt="SLB-3"></p>
-<p>其实在考虑能否使用阿里云自带的监控实现这个需求时还出现了许多的小问题，它们一次又一次试图打消我们想直接拿现有的监控偷懒的念头。不过由于我们脸皮够厚，都扛过来了。（为了想直接利用阿里云监控这个现有的设施，我的师傅甚至提出，我们自己写的监控应用会对线上服务器产生额外的压力，并发的情况下会有严重后果这样一说。我当时惊呆了）</p>
+<p>其实在考虑能否使用阿里云自带的监控实现这个需求时还出现了许多的小问题，它们一次又一次试图打消我们想直接拿现有的监控偷懒的念头。不过由于我们脸皮够厚，都扛过来了。</p>
 <p>在这个过程中，为了搞清楚需求诞生的原因，我找了许多运维小伙伴沟通。有意思的是，每当与一个新的小伙伴聊时，他们总有新的现成的方案，并表示我说的需求可以满足。</p>
 <p>我想这里并不是需求沟通出了问题。从一开始师傅把项目丢给我时，他告诉我的需求就是正确的。就是需要一个监控应用，对SLB底下的所有ECS进行监控。问题在于我们没有搞清楚需求产生的原因，用我喜欢的话来说，就是“导致这个需求产生的导火线”。在我们没有搞清楚这一点之前，盲目地只顾需求的解决方案，反而会迷失方向。因为这根“导火线”，很有可能就是在这个需求中你需要去攻克的最大的难题。</p>
 
@@ -371,6 +371,10 @@
           <span class="post-nav-divider"></span>
 
           <div class="post-nav-prev post-nav-item">
+            
+              <a href="/2019/10/16/跨域问题/" rel="prev" title="跨域问题">
+                跨域问题 <i class="fa fa-chevron-right"></i>
+              </a>
             
           </div>
         </div>
@@ -438,7 +442,7 @@
               
                 <a href="/archives/">
               
-                  <span class="site-state-item-count">10</span>
+                  <span class="site-state-item-count">13</span>
                   <span class="site-state-item-name">posts</span>
                 </a>
               </div>
