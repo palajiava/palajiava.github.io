@@ -79,17 +79,17 @@
 
 
 
-<meta name="description" content="最近忙于okr0.2版本的开发与测试。">
+<meta name="description" content="隐居作画中～">
 <meta property="og:type" content="article">
-<meta property="og:title" content="跨域访问与同源策略">
-<meta property="og:url" content="http://yoursite.com/2019/10/17/跨域访问与同源策略/index.html">
+<meta property="og:title" content="八大排序抽象画">
+<meta property="og:url" content="http://yoursite.com/2019/10/14/八大排序抽象画/index.html">
 <meta property="og:site_name" content="高手的博客">
-<meta property="og:description" content="最近忙于okr0.2版本的开发与测试。">
+<meta property="og:description" content="隐居作画中～">
 <meta property="og:locale" content="en">
-<meta property="og:updated_time" content="2019-10-22T14:58:14.228Z">
+<meta property="og:updated_time" content="2019-10-22T15:07:25.877Z">
 <meta name="twitter:card" content="summary">
-<meta name="twitter:title" content="跨域访问与同源策略">
-<meta name="twitter:description" content="最近忙于okr0.2版本的开发与测试。">
+<meta name="twitter:title" content="八大排序抽象画">
+<meta name="twitter:description" content="隐居作画中～">
 
 
 
@@ -119,13 +119,13 @@
 
 
 
-  <link rel="canonical" href="http://yoursite.com/2019/10/17/跨域访问与同源策略/">
+  <link rel="canonical" href="http://yoursite.com/2019/10/14/八大排序抽象画/">
 
 
 
 
 
-  <title>跨域访问与同源策略 | 高手的博客</title>
+  <title>八大排序抽象画 | 高手的博客</title>
   
 
 
@@ -232,7 +232,7 @@
   
   
   <div class="post-block">
-    <link itemprop="mainEntityOfPage" href="http://yoursite.com/2019/10/17/跨域访问与同源策略/">
+    <link itemprop="mainEntityOfPage" href="http://yoursite.com/2019/10/14/八大排序抽象画/">
 
     <span hidden itemprop="author" itemscope itemtype="http://schema.org/Person">
       <meta itemprop="name" content="bingjie.du@xiaobao100.com">
@@ -249,7 +249,7 @@
 
         
         
-          <h1 class="post-title" itemprop="name headline">跨域访问与同源策略</h1>
+          <h1 class="post-title" itemprop="name headline">八大排序抽象画</h1>
         
 
         <div class="post-meta">
@@ -261,8 +261,8 @@
               
                 <span class="post-meta-item-text">Posted on</span>
               
-              <time title="Post created" itemprop="dateCreated datePublished" datetime="2019-10-17T16:34:59+08:00">
-                2019-10-17
+              <time title="Post created" itemprop="dateCreated datePublished" datetime="2019-10-14T10:18:50+08:00">
+                2019-10-14
               </time>
             
 
@@ -300,23 +300,8 @@
 
       
         <hr>
-<p>最近忙于okr0.2版本的开发与测试。</p>
+<p>隐居作画中～</p>
 <a id="more"></a>
-
-<p>坦诚地讲，这一版加的功能并不多，我主要负责Excel上传解析及后续的数据处理这一块。开发的时候感觉逻辑挺乱的，很难以一个比较流畅的方式灵活地将Excel里的内容提取封装。好在灵感乍现，找到了突破口，整个提取逻辑里竟有几分算法的味道。</p>
-<p>我找到前端开发联调时，她刚与我师兄调完登录那块的功能。为了与后端联调，前端需要修改它的配置，将调用地址ip调成对应站点的ip。一切准备就绪，点击上传文件：NullPointerException。</p>
-<p>经查询，异常出自拦截器中对Token的验证，在获取Cookie这块，因取得的Cookie是null导致了这次空指针异常。在排除了一切可能之后我怀疑这是因为她登录时调用了之前配的师兄本机的站点的接口，在上传文件时才调用我站点的接口，不同的站点不共享Cookie，所以导致了这个问题。她也赞同了这个观点并且表示登录目前只能调用师兄那边的接口。鉴于之前看到她跟师兄好像调的挺麻烦的，我便决定把我这几个接口里边跟登录有关的代码注释掉，方便联调。</p>
-<p>有意思的来了。</p>
-<p>有点冒失的我在其中一个接口中落掉了一段与Cookie有关的代码，没有注释掉。但联调得到的结果却是获取到了Cookie之后的样子。</p>
-<p>我惊呆了。基于跨域访问的知识，我一口咬定登录也调的是我本机站点的接口，并要求重新测试上传文件的接口。但奇怪的事情最终还是发生了。无论我们测多少次，依旧是文件上传的接口请求没带Cookie，其余的接口请求带了Cookie。我们开始怀疑这个文件流请求的特殊性。</p>
-<p>我找来了另外一个前端开发人员，在他俩的对峙下得出最终结论：文件流的请求是Form请求而非Ajax请求，无法像Ajax请求那样走代理，Form请求的参数里没有设置Cookie的选项。我们暂且不去理会Form请求里有什么参数，在Form请求不走代理的前提下，Form请求与走代理的Ajax请求访问的域是不同的，就算Form请求可以设置Cookie，它们也无法共享Cookie。</p>
-<p>结合这段结论，查了相关资料，我对跨域访问的认识愈发清晰。</p>
-<p>以前我只知道，在同源策略的限制下，JS中不能访问非本源的站点，即不能访问除自己外别的站点。可这在目前的情况来看不成立——Form请求可以访问到别的站点。查了相关资料得知，同源策略只会限制Ajax请求，它不会对Form请求做限制，理由是Form请求并不是半双工的，并不会有安全问题。可我明明记得前端拿到了返回值呀。在得知了前端的确有使用Form请求且通过回调函数得到返回值的办法后，我开始怀疑浏览器只对Ajax请求做同源限制的真正原因，这里列出同源策略的三条限制内容：</p>
-<p>1、Cookie、LocalStorage 和 IndexDB 无法读取。</p>
-<p>2、DOM 无法获得。</p>
-<p>3、AJAX 请求不能发送。</p>
-<p>在这里我有个疑惑，既然同源策略是为了防止共享Cookie等信息所导致的问题，那我们限制不同域独立Cookie，做第一条限制就够了，为什么还要禁止Ajax请求访问非同源站点呢？是因为Ajax能跨过第一条限制吗？</p>
-
       
     </div>
     
@@ -340,8 +325,8 @@
         <div class="post-nav">
           <div class="post-nav-next post-nav-item">
             
-              <a href="/2019/10/14/八大排序抽象画/" rel="next" title="八大排序抽象画">
-                <i class="fa fa-chevron-left"></i> 八大排序抽象画
+              <a href="/2019/09/25/SLB云监控/" rel="next" title="我们想要的云监控">
+                <i class="fa fa-chevron-left"></i> 我们想要的云监控
               </a>
             
           </div>
@@ -350,8 +335,8 @@
 
           <div class="post-nav-prev post-nav-item">
             
-              <a href="/2019/10/21/揭秘协程/" rel="prev" title="揭秘协程">
-                揭秘协程 <i class="fa fa-chevron-right"></i>
+              <a href="/2019/10/17/跨域访问与同源策略/" rel="prev" title="跨域访问与同源策略">
+                跨域访问与同源策略 <i class="fa fa-chevron-right"></i>
               </a>
             
           </div>
