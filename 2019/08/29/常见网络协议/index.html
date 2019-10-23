@@ -86,13 +86,13 @@
 <meta property="og:site_name" content="高手的博客">
 <meta property="og:description" content="前言：本文单纯记录两个网络协议的特点，类似笔记，没有自己的想法，比较枯燥。">
 <meta property="og:locale" content="en">
-<meta property="og:image" content="http://yoursite.com/.com//nimendedage/Desktop/Blog/pic/DNS%E5%9B%BE%E8%BF%AD%E4%BB%A3%E6%9F%A5%E6%89%BE.jpg">
-<meta property="og:image" content="http://yoursite.com/.com//nimendedage/Desktop/Blog/pic/DNS%E5%9B%BE%E9%80%92%E5%BD%92%E6%9F%A5%E6%89%BE.jpg">
+<meta property="og:image" content="http://yoursite.com/Users/nimendedage/Desktop/Blog/pic/DNS%E5%9B%BE%E8%BF%AD%E4%BB%A3%E6%9F%A5%E6%89%BE.jpg">
+<meta property="og:image" content="http://yoursite.com/Users/nimendedage/Desktop/Blog/pic/DNS%E5%9B%BE%E9%80%92%E5%BD%92%E6%9F%A5%E6%89%BE.jpg">
 <meta property="og:updated_time" content="2019-09-10T08:31:24.905Z">
 <meta name="twitter:card" content="summary">
 <meta name="twitter:title" content="常见网络协议">
 <meta name="twitter:description" content="前言：本文单纯记录两个网络协议的特点，类似笔记，没有自己的想法，比较枯燥。">
-<meta name="twitter:image" content="http://yoursite.com/.com//nimendedage/Desktop/Blog/pic/DNS%E5%9B%BE%E8%BF%AD%E4%BB%A3%E6%9F%A5%E6%89%BE.jpg">
+<meta name="twitter:image" content="http://yoursite.com/Users/nimendedage/Desktop/Blog/pic/DNS%E5%9B%BE%E8%BF%AD%E4%BB%A3%E6%9F%A5%E6%89%BE.jpg">
 
 
 
@@ -313,9 +313,9 @@
 <p>DNS可以使用UDP/TCP进行传输，使用的端口号都为53，大多数情况下都是用UDP进行传输，只有当返回的响应过大或是DNS服务器去同步更新数据时才会使用TCP进行传输。</p>
 <p>功能步骤：</p>
 <p>在浏览器中访问域名时，系统默认先访问host文件查看是否存在访问域名的映射关系，若不存在，就将请求发送给本地DNS服务器，在本地服务器也找不到映射关系的情况下，会继续向上级服务器发送请求，此时有两种不同的查询方式——递归查询和迭代查询。</p>
-<p>解析顺序大致分为这几个步骤：（迭代）<br>1.浏览器缓存<br>2.系统缓存<br>3.路由器缓存<br>4.本地DNS服务器缓存<br>5.根域名服务器<br>6.顶级域名服务器<br>7.主域名服务器<br>8.本地DNS服务器缓存<br>（主域名服务器查找自身缓存，没有就去下一级域名服务器查找，直到找到）<br><img src="/.com//nimendedage/Desktop/Blog/pic/DNS%E5%9B%BE%E8%BF%AD%E4%BB%A3%E6%9F%A5%E6%89%BE.jpg" alt="DNS迭代查询"></p>
+<p>解析顺序大致分为这几个步骤：（迭代）<br>1.浏览器缓存<br>2.系统缓存<br>3.路由器缓存<br>4.本地DNS服务器缓存<br>5.根域名服务器<br>6.顶级域名服务器<br>7.主域名服务器<br>8.本地DNS服务器缓存<br>（主域名服务器查找自身缓存，没有就去下一级域名服务器查找，直到找到）<br><img src="/Users/nimendedage/Desktop/Blog/pic/DNS%E5%9B%BE%E8%BF%AD%E4%BB%A3%E6%9F%A5%E6%89%BE.jpg" alt="DNS迭代查询"></p>
 <p>DNS本地服务器迭代查询</p>
-<p><img src="/.com//nimendedage/Desktop/Blog/pic/DNS%E5%9B%BE%E9%80%92%E5%BD%92%E6%9F%A5%E6%89%BE.jpg" alt="DNS递归查询"></p>
+<p><img src="/Users/nimendedage/Desktop/Blog/pic/DNS%E5%9B%BE%E9%80%92%E5%BD%92%E6%9F%A5%E6%89%BE.jpg" alt="DNS递归查询"></p>
 <p>DNS本地服务器递归查询</p>
 <p>###ARP协议</p>
 <p>简介：</p>
