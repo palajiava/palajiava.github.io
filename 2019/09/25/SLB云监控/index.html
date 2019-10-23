@@ -82,17 +82,17 @@
 <meta name="description" content="这是本人第一次接到运维方的需求，说是需要做一个系统来监控SLB底下挂的ECS集群中某些接口的健康状态，并附上了长长的接口清单。">
 <meta property="og:type" content="article">
 <meta property="og:title" content="我们想要的云监控">
-<meta property="og:url" content="http://yoursite.com/2019/09/25/SLB云监控/index.html">
+<meta property="og:url" content="https://palajiava.github.io/2019/09/25/SLB云监控/index.html">
 <meta property="og:site_name" content="高手的博客">
 <meta property="og:description" content="这是本人第一次接到运维方的需求，说是需要做一个系统来监控SLB底下挂的ECS集群中某些接口的健康状态，并附上了长长的接口清单。">
 <meta property="og:locale" content="en">
-<meta property="og:image" content="http://yoursite.com/2019/09/25/SLB云监控/SLB%E4%BA%91%E7%9B%91%E6%8E%A7/SLB-1.png">
-<meta property="og:image" content="http://yoursite.com/2019/09/25/SLB云监控/SLB%E4%BA%91%E7%9B%91%E6%8E%A7/SLB-3.png">
+<meta property="og:image" content="https://palajiava.github.io/2019/09/25/SLB云监控/SLB-1.png">
+<meta property="og:image" content="https://palajiava.github.io/2019/09/25/SLB云监控/SLB-3.png">
 <meta property="og:updated_time" content="2019-10-22T11:09:23.483Z">
 <meta name="twitter:card" content="summary">
 <meta name="twitter:title" content="我们想要的云监控">
 <meta name="twitter:description" content="这是本人第一次接到运维方的需求，说是需要做一个系统来监控SLB底下挂的ECS集群中某些接口的健康状态，并附上了长长的接口清单。">
-<meta name="twitter:image" content="http://yoursite.com/2019/09/25/SLB云监控/SLB%E4%BA%91%E7%9B%91%E6%8E%A7/SLB-1.png">
+<meta name="twitter:image" content="https://palajiava.github.io/2019/09/25/SLB云监控/SLB-1.png">
 
 
 
@@ -122,7 +122,7 @@
 
 
 
-  <link rel="canonical" href="http://yoursite.com/2019/09/25/SLB云监控/">
+  <link rel="canonical" href="https://palajiava.github.io/2019/09/25/SLB云监控/">
 
 
 
@@ -235,7 +235,7 @@
   
   
   <div class="post-block">
-    <link itemprop="mainEntityOfPage" href="http://yoursite.com/2019/09/25/SLB云监控/">
+    <link itemprop="mainEntityOfPage" href="https://palajiava.github.io/2019/09/25/SLB云监控/">
 
     <span hidden itemprop="author" itemscope itemtype="http://schema.org/Person">
       <meta itemprop="name" content="bingjie.du@xiaobao100.com">
@@ -312,7 +312,7 @@
 <p>早就在用？</p>
 <p>当我再次想到这个需求是出自运维方时，我渐渐意识到事情远没有那么简单。我便找到了需求方，希望得知云监控不适用的原因，即导致这个项目需求诞生的导火线。</p>
 <p>由于我没有运维方查看云监控的权限，这里我画一张简单的架构图，用文字简单描述一下他们“早就在用的云监控”。</p>
-<p><img src="SLB%E4%BA%91%E7%9B%91%E6%8E%A7/SLB-1.png" alt="SLB-1"></p>
+<p><img src="//palajiava.github.io/2019/09/25/SLB云监控/SLB-1.png" alt="SLB-1"></p>
 <p>如图，一台SLB暴露在公网，底下挂着若干的ECS都部署在内网中。</p>
 <p>阿里云向我们提供这样一种云监控服务：我们可以通过直接在阿里云平台上配置每次监控请求间隔的时间，以及希望监控的ip+监控接口的路径，这样就可以实现每隔固定时间SLB就会向底下的ECS发送探测请求。还可以对请求的响应时间、响应值配置一个阈值，当响应时间或是响应值超过阈值大小时，可以触发它的报警服务。简直就是马杀鸡一条龙。</p>
 <p>遗憾的是这并不适用于我们的某些业务。</p>
@@ -334,7 +334,7 @@
 <p>方案二、由于nginx、IIS、tomcat等这类服务是通过Http请求头中的域名信息来区分站点，我们可以通过在每个Http请求头中加入域名信息，然后通过ip去访问，这样也能访问到响应的应用。</p>
 <p>就方案一而言，我们先不说这个方案技术性有多差。在我们想要并发地发送这些请求时，保证线程安全就成了需要去攻克的一个点。很明显在方案二可行的情况下，方案一是必然不会被考虑使用的。（其实我们是先想到的方案一，经过对站点区分过程的研究后才发现可以有方案二这样简单的方案）</p>
 <p>以下便是我们的最终敲定的方案</p>
-<p><img src="SLB%E4%BA%91%E7%9B%91%E6%8E%A7/SLB-3.png" alt="SLB-3"></p>
+<p><img src="//palajiava.github.io/2019/09/25/SLB云监控/SLB-3.png" alt="SLB-3"></p>
 <p>其实在考虑能否使用阿里云自带的监控实现这个需求时还出现了许多的小问题，它们一次又一次试图打消我们想直接拿现有的监控偷懒的念头。不过由于我们脸皮够厚，都扛过来了。</p>
 <p>在这个过程中，为了搞清楚需求诞生的原因，我找了许多运维小伙伴沟通。有意思的是，每当与一个新的小伙伴聊时，他们总有新的现成的方案，并表示我说的需求可以满足。</p>
 <p>我想这里并不是需求沟通出了问题。从一开始师傅把项目丢给我时，他告诉我的需求就是正确的。就是需要一个监控应用，对SLB底下的所有ECS进行监控。问题在于我们没有搞清楚需求产生的原因，用我喜欢的话来说，就是“导致这个需求产生的导火线”。在我们没有搞清楚这一点之前，盲目地只顾需求的解决方案，反而会迷失方向。因为这根“导火线”，很有可能就是在这个需求中你需要去攻克的最大的难题。</p>
